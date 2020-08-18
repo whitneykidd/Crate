@@ -1,10 +1,15 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    // subscriptions
+    // must belong to: user 
+    // must belong to: crate 
+    // created/updated
     return queryInterface.createTable('subscriptions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        // Sequalize is a promise-based ORM for dbs like postgres
         type: Sequelize.INTEGER
       },
       userId: {

@@ -1,3 +1,7 @@
+// params is used several times throughout project
+// ex in 1-user --> role: params.user.roles.admin
+// reminds me of constructing an api
+// we've got a product object, and a user object
 {
   "product": {
     "types": {

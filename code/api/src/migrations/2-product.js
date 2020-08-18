@@ -1,10 +1,20 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
+  // migration for products. each product will have:
+  // id
+  // name: string
+  // slug: string (slug is a description in one unit)
+  // description: text
+  // type: integer ---> not sure what type would be
+  // gender: integer 
+  // image: text
+  // createdAt / updatedAt
     return queryInterface.createTable('products', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        // Sequalize is a promise-based ORM for dbs like postgres
         type: Sequelize.INTEGER
       },
       name: {
@@ -19,7 +29,7 @@ module.exports = {
       type: {
         type: Sequelize.INTEGER
       },
-      gender: {
+    gender: {
         type: Sequelize.INTEGER
       },
       image: {

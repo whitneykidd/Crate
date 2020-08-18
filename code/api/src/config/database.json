@@ -1,3 +1,7 @@
+// setup values. postgres is confirmed as my username. 
+// to check postgres username:
+// $ psql 
+// $ /du
 {
   "development": {
     "username": "postgres",
