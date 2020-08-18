@@ -1,17 +1,12 @@
 {
-  // crate uses localhost:8000 for dev and local prod
   "port": 8000,
-  // typical for an api to have a client secret
   "secret": "super-secret-key-crate-api",
-  // bycrpyt related - each digit doubles the time to calculate a bcypt hash
   "saltRounds": 10,
-  // feels like the endpoint to hit the graphql interface localhost:8000 
   "graphql": {
     "endpoint": "/",
     "ide": true,
     "pretty": true
   },
-  // not sure what upload does
   "upload": {
     "endpoint": "/upload"
   }

@@ -9,6 +9,7 @@ import databaseConfig from '../config/database.json'
 const databaseConfigEnv = databaseConfig[NODE_ENV]
 
 // Create new database connection
+// This feels like accessing an API
 const connection = new Sequelize(databaseConfigEnv.database, databaseConfigEnv.username, databaseConfigEnv.password, {
   host: databaseConfigEnv.host,
   dialect: databaseConfigEnv.dialect,
@@ -20,6 +21,7 @@ console.info('SETUP - Connecting database...')
 
 connection
   .authenticate()
+  // promise! Asynch functions!
   .then(() => {
     console.info('INFO - Database connected.')
   })

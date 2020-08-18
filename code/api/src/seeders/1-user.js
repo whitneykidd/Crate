@@ -1,4 +1,7 @@
+// code should be executed in strict mode.
+// ex: in strict mode you cant use undeclared variables
 'use strict';
+// 2 users in the seed file, user and admin
 
 const bcrypt = require('bcrypt');
 const config = require('../config/server.json');
@@ -10,6 +13,7 @@ module.exports = {
       {
         name: 'The Admin',
         email: 'admin@crate.com',
+      // this is where password is encrypted
         password: bcrypt.hashSync('123456', config.saltRounds),
         role: params.user.roles.admin,
         createdAt: new Date(),
@@ -27,6 +31,8 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
+  // does this also delete its dependants? - subscriptions 
+  // is that not a problem?
     return queryInterface.bulkDelete('users', null, {});
   }
 }

@@ -121,6 +121,8 @@ export function get(slug, isLoading = true) {
 }
 
 // Create subscription
+// when a user clicks 'subscribe to crate' we end up here
+
 export function create(variables) {
   return dispatch => {
     return axios.post(routeApi, mutation({

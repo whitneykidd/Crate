@@ -6,6 +6,13 @@ import jwt from 'jsonwebtoken'
 import serverConfig from '../../config/server'
 import params from '../../config/params'
 import models from '../../setup/models'
+// call these methods on User
+// create
+// login
+// getById
+// getAll
+// remove
+// getGenders
 
 // Create
 export async function create(parentValue, { name, email, password }) {

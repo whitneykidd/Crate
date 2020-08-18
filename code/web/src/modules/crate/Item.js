@@ -34,7 +34,9 @@ class Item extends PureComponent {
     })
 
     this.props.messageShow('Subscribing, please wait...')
-
+// crate is a method passed from subscriptions/api/actions
+// passes an argument of crateID
+// follow it
     this.props.create({ crateId })
       .then(response => {
         if (response.data.errors && response.data.errors.length > 0) {

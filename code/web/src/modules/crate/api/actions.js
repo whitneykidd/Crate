@@ -23,7 +23,11 @@ export function getList(orderBy = 'DESC', isLoading = true) {
       error: null,
       isLoading
     })
-
+// axios.post feels like an api call
+// go find these fields
+// then take the response
+// if it is successful (200)
+// 'dispatch' will send data to the 'store'
     return axios.post(routeApi, query({
       operation: 'crates',
       variables: { orderBy },

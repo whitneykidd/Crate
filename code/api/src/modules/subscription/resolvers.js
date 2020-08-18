@@ -1,6 +1,14 @@
 // App Imports
 import models from '../../setup/models'
 
+// methods that can be called on model Subscription
+// This is exposing similar functions that are built into AR. 
+// get
+// getByUser
+// getAll
+// create
+// remove
+
 // Get subscription by ID
 export async function get(parentValue, { id }) {
   return await models.Subscription.findOne({

@@ -5,6 +5,8 @@ import { GraphQLString, GraphQLInt } from 'graphql'
 import { UserType } from './types'
 import { create, remove } from './resolvers'
 
+// note: only create and remove. No udpate for user\
+
 // Create
 export const userSignup = {
   type: UserType,
@@ -24,6 +26,7 @@ export const userSignup = {
       type: GraphQLString
     }
   },
+  // built in the resolvers file
   resolve: create
 }
 
