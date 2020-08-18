@@ -19,7 +19,7 @@ const connection = new Sequelize(databaseConfigEnv.database, databaseConfigEnv.u
 // Test connection
 // console.info('SETUP - Connecting database...')
 
-<<<<<<< HEAD
+
 connection
   .authenticate()
   // promise! Asynch functions!
@@ -29,7 +29,6 @@ connection
   .catch(err => {
     console.error('ERROR - Unable to connect to the database:', err)
   })
-=======
 // connection
 //   .authenticate()
 //   .then(() => {
@@ -38,6 +37,5 @@ connection
 //   .catch(err => {
 //     console.error('ERROR - Unable to connect to the database:', err)
 //   })
->>>>>>> tested user q&m. tested product q. unable to auth before testing product m
 
 export default connection
