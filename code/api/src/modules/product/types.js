@@ -7,6 +7,7 @@ const ProductType = new GraphQLObjectType({
   description: 'Product Type',
 
   fields: () => ({
+    // seems to be defining the type of table attribute
     id: { type: GraphQLInt },
     name: { type: GraphQLString },
     slug: { type: GraphQLString },

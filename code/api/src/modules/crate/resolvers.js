@@ -2,6 +2,15 @@
 import models from '../../setup/models'
 import params from '../../config/params'
 
+// resolvers are functions that can be called on each field of the schema
+
+// Methods that can be called, as defined by resolvers
+// getById
+// getAll
+// create
+// update
+// remove
+
 // Get crate by ID
 export async function getById(parentValue, { crateId }) {
   const crate = await models.Crate.findOne({ where: { id: crateId } })

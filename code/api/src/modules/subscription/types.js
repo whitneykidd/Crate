@@ -11,6 +11,7 @@ const SubscriptionType = new GraphQLObjectType({
   description: 'Subscription Type',
 
   fields: () => ({
+    // from Sequalize, back to GraphQL
     id: { type: GraphQLInt },
     user: { type: UserType },
     crate: { type: CrateType },

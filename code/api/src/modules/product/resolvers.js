@@ -1,6 +1,16 @@
 // App Imports
 import params from '../../config/params'
 import models from '../../setup/models'
+// Methods to call on the Product Model
+// Resolvers map functions to an object
+// getAll
+// getBySlug
+// getById
+// getRelated
+// create
+// update
+// remove
+// getTypes
 
 // Get all products
 export async function getAll() {

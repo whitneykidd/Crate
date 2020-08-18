@@ -1,11 +1,15 @@
 // Imports
+// not sure what the imports are doing. feels like inheretance
 import { GraphQLString, GraphQLInt } from 'graphql'
 
 // App Imports
 import CrateType from './types'
 import { create, remove, update } from './resolvers'
 
+// MUTATIONS DEAL WITH CRUD FUNCTIONALITY - Create, Update, Remove
+
 // Crate create
+// constants can be functions
 export const crateCreate = {
   type: CrateType,
   args: {

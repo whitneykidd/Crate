@@ -2,6 +2,12 @@
 
 // User
 module.exports = function(sequelize, DataTypes) {
+// User model 
+// name
+// email 
+// password 
+// role 
+// has many Subscriptions
   let User = sequelize.define('users', {
     name: {
       type: DataTypes.STRING

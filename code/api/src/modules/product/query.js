@@ -5,6 +5,13 @@ import { GraphQLString, GraphQLInt, GraphQLList } from 'graphql'
 import { ProductType, ProductTypesType } from './types'
 import { getAll, getBySlug, getById, getRelated, getTypes } from './resolvers'
 
+// call the following queries as defined by resolvers
+// getAll 
+// getBySlug
+// getById
+// getRelated
+// getTypes
+
 // Products All
 export const products = {
   type: new GraphQLList(ProductType),

@@ -1,6 +1,8 @@
 'use strict'
 
 // Subscription
+// belongs to user 
+// belongs to crate
 module.exports = function(sequelize, DataTypes) {
   let Subscription = sequelize.define('subscriptions', {
     userId: {

@@ -4,6 +4,8 @@ import { GraphQLString, GraphQLInt } from 'graphql'
 // App Imports
 import { ProductType } from './types'
 import { create, update, remove } from './resolvers'
+// CRUD functionality --> Create, Update, Remove
+// from resolvers
 
 // Product create
 export const productCreate = {
@@ -11,6 +13,7 @@ export const productCreate = {
   args: {
     name: {
       name: 'name',
+      // how is 'name' getting placed in the crated product?
       type: GraphQLString
     },
 
@@ -39,6 +42,7 @@ export const productCreate = {
       type: GraphQLString
     }
   },
+  // method defined by resolver
   resolve: create
 }
 

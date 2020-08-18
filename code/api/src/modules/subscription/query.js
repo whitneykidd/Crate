@@ -5,6 +5,11 @@ import { GraphQLInt, GraphQLList } from 'graphql'
 import SubscriptionType from './types'
 import { getAll, getByUser, get } from './resolvers'
 
+// call the following queries as defined by resolvers
+// getAll 
+// getByUser 
+// get
+
 // Subscriptions All
 export const subscriptions = {
   type: new GraphQLList(SubscriptionType),
