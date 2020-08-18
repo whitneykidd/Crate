@@ -31,6 +31,8 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
+  // does this also delete its dependants? - subscriptions 
+  // is that not a problem?
     return queryInterface.bulkDelete('users', null, {});
   }
 }

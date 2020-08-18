@@ -3,14 +3,21 @@
 const params = require('../config/params');
 
 module.exports = {
+  // Sequalize is a promise-based Node.js ORM for Postgres
+  // help setup and connect to the db
+  // bulk insert is creating 'products' as the queryInterface 
+  // and using Sequalize to transform the data into the DB.
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('products', [
       {
         name: 'Belt for Women',
         slug: 'belt-for-women',
         description: 'A very nice belt for women.',
+        // type is either 1 (cloth) or 2 (accessory). as seen in the params file
         type: params.product.types.accessory.id,
+        // quite gender specific. In 2020 we must be more inclusive
         gender: params.user.gender.female.id,
+        // images are kept at this location
         image: '/images/stock/belt-female.jpg',
         createdAt: new Date(),
         updatedAt: new Date()

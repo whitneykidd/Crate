@@ -1,9 +1,13 @@
 {
   "name": "api",
   "version": "1.0.0",
+  // /api/v1/...
+  // feels familiar
   "description": "",
   "main": "index.js",
   "scripts": {
+    // enviornment and database setup commands
+    // this must get run at somepoint
     "setup": "npm run setup:install && npm run setup:db",
     "setup:install": "npm install",
     "setup:db": "npm run db:migrate && npm run db:seed",
@@ -26,6 +30,7 @@
     "nodemon": "2.0.3"
   },
   "dependencies": {
+    // feels like a GEM FILE
     "@babel/runtime": "7.9.2",
     "bcrypt": "4.0.1",
     "body-parser": "1.19.0",

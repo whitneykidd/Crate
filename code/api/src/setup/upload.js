@@ -1,6 +1,9 @@
 // Imports
 import path from 'path'
 import multer from 'multer'
+// "Multer is a node.js middleware for handling multipart / form - data, 
+// which is primarily used for uploading files"
+// used for uploading - checks out
 
 // App Imports
 import serverConfig from '../config/server.json'
