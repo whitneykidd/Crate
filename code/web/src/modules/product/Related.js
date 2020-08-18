@@ -29,10 +29,10 @@ class Related extends PureComponent {
   refresh = (productId) => {
     this.props.getProductRelatedList(productId)
   }
-
+//  This puts the item on the page. At the moment I am returing an error
+// error: "Cannot read property 'length' of null"
   render() {
     const { isLoading, list } = this.props.productsRelated
-
     return (
       <div>
         {/* Related product list */}
@@ -40,12 +40,14 @@ class Related extends PureComponent {
           {
             isLoading
               ? <Loading />
+              // if list is null then this will break. 
               : list.length > 0
                 ? list.map(product => (
                     <GridCell key={product.id} style={{ textAlign: 'center' }}>
                       <ProductItem product={product}/>
                     </GridCell>
                   ))
+                  // if no related products, show this. I'd like to jump directly to this if list === null
                 : <GridCell>
                     <EmptyMessage message="No related products to show." />
                   </GridCell>
