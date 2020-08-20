@@ -15,7 +15,7 @@ import Loading from '../common/Loading'
 import EmptyMessage from '../common/EmptyMessage'
 import CrateItem from './Item'
 
-// Component
+// Component (list)
 class List extends PureComponent {
 
   // Runs on server only for SSR
@@ -27,8 +27,13 @@ class List extends PureComponent {
   componentDidMount() {
     this.props.getCratesList('ASC')
   }
-
+// this displays text and data onscreen
+// being pulled in from routes/crate/list
+// seems like
   render() {
+    // console.log(this);
+    // console.log(this.props);
+    // console.log(this.props.crates);
     return (
       <div>
         {/* SEO */}
@@ -50,9 +55,13 @@ class List extends PureComponent {
         <Grid>
           <GridCell>
             {
+
               this.props.crates.isLoading
                 ? <Loading/>
                 : this.props.crates.list.length > 0
+                // iterate over each crate and display info
+                // where is the subscribe button
+                // follow CrateItem -> import CrateItem from './Item'
                     ? this.props.crates.list.map(crate => (
                       <div key={crate.id} style={{ margin: '2em', float: 'left' }}>
                         <CrateItem crate={crate}/>

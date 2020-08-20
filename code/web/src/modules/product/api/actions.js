@@ -120,8 +120,8 @@ export function getById(productId) {
 export function getRelatedList(productId, isLoading = true) {
   return (dispatch, getState) => {
     let state = getState()
-
-    if (state.productsRelated.list.length === 0 || state.productId !== productId) {
+    // if (state.productsRelated.list.length === 0 || state.productId !== productId) {
+    if (state.productsRelated.list === [] || state.productId !== productId) {
       dispatch({
         type: PRODUCTS_GET_RELATED_LIST_REQUEST,
         error: null,

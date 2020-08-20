@@ -23,6 +23,7 @@ import { login } from './api/actions'
 import AuthCheck from '../auth/AuthCheck'
 
 // Component
+// this is responsible for the login process and view
 class Login extends Component {
 
   constructor(props) {
@@ -37,7 +38,7 @@ class Login extends Component {
 
     // Function bindings
   }
-
+// reassign user. feels like 'current_user'
   onChange = (event) => {
     let user = this.state.user
     user[event.target.name] = event.target.value
@@ -49,13 +50,17 @@ class Login extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-
+// what is props? props is the way components pass data between themselves
+// flash message = messageShow
     this.props.messageShow('Logging in, please wait...')
 
     this.props.login(this.state.user)
       .then(response => {
         if (this.props.user.error && this.props.user.error.length > 0) {
+          // this displays the message generated in resolvers. 
+          // user is a db object. therefore when you call user.error it will hit the resolvers to see what functions are available
           this.props.messageShow(this.props.user.error)
+      
 
           window.setTimeout(() => {
             this.props.messageHide()
@@ -74,6 +79,7 @@ class Login extends Component {
   }
 
   render() {
+    // render is populating data on the page
     const { isLoading, error } = this.props.user
 
     return (
@@ -116,6 +122,7 @@ class Login extends Component {
             <div style={{ width: '25em', margin: '0 auto' }}>
               {/* Email */}
               <Input
+              // this is the form on the page
                 type="email"
                 fullWidth={true}
                 placeholder="Email"

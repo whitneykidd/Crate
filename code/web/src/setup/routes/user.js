@@ -1,4 +1,5 @@
 // App Imports
+// Each of these imputs is tied to a route
 import Login from '../../modules/user/Login'
 import Signup from '../../modules/user/Signup'
 import Profile from '../../modules/user/Profile'

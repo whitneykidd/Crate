@@ -1,3 +1,4 @@
+// This is the splash screen. root. '/'
 // Imports
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -14,6 +15,7 @@ import { textLevel1 } from '../../ui/common/shadows'
 
 // App Imports
 import { APP_URL } from '../../setup/config/env'
+// routes depending on user or crate
 import crateRoutes from '../../setup/routes/crate'
 import userRoutes from '../../setup/routes/user'
 import Onboarding from './Onboarding'

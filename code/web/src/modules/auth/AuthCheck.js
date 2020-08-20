@@ -10,6 +10,9 @@ import admin from '../../setup/routes/admin'
 
 // Component
 const AuthCheck = (props) => (
+  // this is where the redirection happens. 
+  // After successful login user is directed to crate.list.path => '/crates'
+
   props.user.isAuthenticated ? (props.user.details.role === 'ADMIN' ? <Redirect to={admin.dashboard.path}/> : <Redirect to={crate.list.path}/>) : ''
 )
 
