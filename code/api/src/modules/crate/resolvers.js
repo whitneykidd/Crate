@@ -1,3 +1,8 @@
+/* code-annotations-wk
+  This file contains logic for returning crate objects,
+  checks for errors and invalid requests,
+  validates roles and permissions for restricted actions
+*/
 // App Imports
 import models from '../../setup/models'
 import params from '../../config/params'

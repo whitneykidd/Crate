@@ -1,3 +1,6 @@
+/* code-annotations-wk
+  This file imports relevant GraphQL data types
+*/
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 

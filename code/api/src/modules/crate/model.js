@@ -1,3 +1,6 @@
+/* code-annotations-wk
+  This file uses sequelize to define model, field types, relationships
+*/
 'use strict'
 
 module.exports = function(sequelize, DataTypes) {

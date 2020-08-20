@@ -58,6 +58,7 @@ class List extends PureComponent {
                         <CrateItem crate={crate}/>
                       </div>
                     ))
+                // redirect to survey 
                     : <EmptyMessage message="No crates to show" />
             }
           </GridCell>
