@@ -46,4 +46,7 @@ export const store = createStore(
   )
 )
 
-// 
+// This is where our redux global store is created. Our imports allow us
+// to infer which component will require the store/state. These compnonets will be:
+// common (landing page), user, product, subscription, crate
+// There is some use of Middleware which I am not too sure what that is about yet.

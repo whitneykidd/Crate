@@ -73,3 +73,14 @@ function commonState(state) {
 }
 
 export default connect(commonState, { messageHide })(Layout)
+
+// We can reference setup/client/App to view the children from this.props
+// It's a Switch component that comes from react-router-dom, which basically
+// establishes all the routes our app will display. This is rendered below our
+// header component which renders our nav link, as the comment on line 26 suggest
+// this is our main page content. After which, a helper function is invoked to 
+// control the rendering of a message (what we see when we subscribe/unsubscribe from
+// a crate) on the botton right corner. This is where common's api
+// folder (state.js & actions.js) are put to use to manage the message display.
+// NOTE: As component name suggest, this defines our App's layout. App is a functional
+// component that renders this layout. 
