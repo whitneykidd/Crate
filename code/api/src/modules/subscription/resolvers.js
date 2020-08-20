@@ -48,13 +48,21 @@ export async function getAll() {
 }
 
 // Create subscription
+// ah yes, we are finally get there
+// models.Subscription.create looks familiar
+// this will create a crate with crateID (argumnet)
+// and with userID obtained form auth.user.id
+// since subscriptions belong to users and crates this makes sense
+
 export async function create(parentValue, { crateId }, { auth }) {
   if(auth.user && auth.user.id > 0) {
     return await models.Subscription.create({
+      // I suppose we could never get here unless we are passing a crateID
       crateId,
       userId: auth.user.id
     })
   } else {
+    // if not a logged in user. throw error message
     throw new Error('Please login to subscribe to this crate.')
   }
 }

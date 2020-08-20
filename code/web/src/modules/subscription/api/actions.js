@@ -122,23 +122,29 @@ export function get(slug, isLoading = true) {
 
 // Create subscription
 // when a user clicks 'subscribe to crate' we end up here
-
+// variables would be 'crateID'
+// axios is running a mutation called subscriptionCreate
+// go to subscriptionCreate in mutation
 export function create(variables) {
   return dispatch => {
     return axios.post(routeApi, mutation({
       operation: 'subscriptionCreate',
-      variables,
+      variables, // crateID: 123
       fields: ['id']
     }))
   }
 }
 
 // Remove subscription
+// when a user clicks 'unsubscribe' we end up here
+// variables being 'crateID'
+// not exactly sure what axios is,
+// but its running a mutation called 'subsriptionRemove'
 export function remove(variables) {
   return dispatch => {
     return axios.post(routeApi, mutation({
       operation: 'subscriptionRemove',
-      variables,
+      variables, // crateID: 123
       fields: ['id']
     }))
   }
