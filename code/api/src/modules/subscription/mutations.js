@@ -7,6 +7,10 @@ import { create, remove } from './resolvers'
 // note: no updatre for a subscription, only create/remove
 
 // Subscription create
+// When a user clicks subscribe on a crate, we end up here
+// only crateID is a passed argument
+// userID can be obtained from something like current_user 
+// follow it to resolve: create
 export const subscriptionCreate = {
   type: SubscriptionType,
   args: {
