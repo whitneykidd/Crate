@@ -1,3 +1,6 @@
+/* code-annotations-wk
+  This file defines the ways the User model can be queried for info
+*/
 // Imports
 import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql'
 
@@ -47,3 +50,9 @@ export const userGenders = {
   type: new GraphQLList(UserGenderType),
   resolve: getGenders
 }
+
+/* code-annotations-wk
+  Will need a query used to return whether a user currently
+  has a styleSummary on record
+  - Boolean
+*/

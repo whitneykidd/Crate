@@ -1,3 +1,6 @@
+/* code-annotations-wk
+  This file holds and defines ways a user can be mutated/updated
+*/
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 
@@ -38,3 +41,20 @@ export const userRemove = {
   },
   resolve: remove
 }
+
+/* code-annotations-wk
+  Will likely have mutation for adding styleSummary here:
+
+  Add Style
+
+  export const userStyle = {
+    type: UserType,
+    args: {
+      styleSummary: {
+        name: 'styleSummary',
+        type: GraphQLString
+      }
+    },
+    resolve: update
+  }
+*/

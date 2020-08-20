@@ -1,3 +1,8 @@
+/* code-annotations-wk
+  This file contains logic for returning user objects,
+  checks for errors and invalid requests,
+  validates roles and permissions for restricted actions
+*/
 // Imports
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -77,3 +82,9 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+/* code-annotations-wk
+  Update user
+  Add resolver function to update User model with styleSummary
+  
+*/

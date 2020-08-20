@@ -1,7 +1,14 @@
+/* code-annotations-wk
+  This file defines the GraphQL types for User model fields
+*/
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // User type
+/* code-annotations-wk
+  Update User type to include styleSummary
+  styleSummary: { type: GraphQLString }
+*/
 const UserType = new GraphQLObjectType({
   name: 'user',
   description: 'User type',
