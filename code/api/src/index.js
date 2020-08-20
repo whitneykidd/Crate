@@ -1,3 +1,7 @@
+/* code-annotations-wk
+  This file imports express for backend application use,
+  imports necessary files to configure and start server & GraphQL
+*/
 // Imports
 import express from 'express'
 
