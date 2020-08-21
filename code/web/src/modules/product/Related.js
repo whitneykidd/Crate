@@ -33,7 +33,10 @@ class Related extends PureComponent {
 // error: "Cannot read property 'length' of null"
   render() {
     const { isLoading, list } = this.props.productsRelated
+<<<<<<< HEAD
     // console.log(`list.length: ${list.length}`)
+=======
+>>>>>>> begin annotations
     return (
       <div>
         {/* Related product list */}
@@ -42,10 +45,14 @@ class Related extends PureComponent {
             isLoading // isLoading is a status. 
               ? <Loading />
               // if list is null then this will break. 
+<<<<<<< HEAD
               : (list && list.length > 0)
               // :  list.length > 0
               // : list !== null || list !== []
               // : list !== null && Array.isArray(list)// list.length > 0
+=======
+              : list.length > 0
+>>>>>>> begin annotations
                 ? list.map(product => (
                     <GridCell key={product.id} style={{ textAlign: 'center' }}>
                       <ProductItem product={product}/>

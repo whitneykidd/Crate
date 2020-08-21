@@ -12,7 +12,8 @@ export default function (server) {
 
   server.use(authentication)
 
-  // API (GraphQL on route `/`)
+  // API (GraphQL on route `/`) 
+  // '/' is the base endpoint
   server.use(serverConfig.graphql.endpoint, graphqlHTTP(request => ({
     schema,
     graphiql: serverConfig.graphql.ide,
