@@ -29,12 +29,17 @@ const Profile = (props) => (
         <H3 font="secondary">My profile</H3>
       </GridCell>
     </Grid>
-
+    {/* This is where user data is displayed. Will need to edit this to show newly created user style*/}
     <Grid>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
 
         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
+        {/* 
+        this.props.user.details.style
+          ? <p style={{ color: grey2, marginBottom: '2em }}>Your Style: {props.user.details.style}</p>
+          : <p style={{ color: grey2, marginBottom: '2em }}>Subscribe to a crate to generate a style</p>
+        */}
 
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>

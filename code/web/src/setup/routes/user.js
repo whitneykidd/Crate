@@ -21,11 +21,20 @@ export default {
     path: '/user/profile',
     component: Profile,
     auth: true
-  },
-
+  },  
+  // after clicking subscribe on a crate we end up here 
+  // this will redirect to user subscriptions page
+  // where your style will show up
   subscriptions: {
     path: '/user/subscriptions',
     component: Subscriptions,
     auth: true
   }
+  // will need the following path 
+  // styleSurvey: {
+  //   path: 'user/styleSurvey',
+  //   component: StyleSurvey, // this needs to be created in ../../modules/user/StyleSurvey.js
+  //   auth: true 
+  // }
+
 }

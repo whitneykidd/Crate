@@ -29,7 +29,6 @@ class List extends PureComponent {
   }
 // this displays text and data onscreen
 // being pulled in from routes/crate/list
-// seems like
   render() {
     // console.log(this);
     // console.log(this.props);

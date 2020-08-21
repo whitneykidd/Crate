@@ -16,14 +16,16 @@ module.exports = {
       // this is where password is encrypted
         password: bcrypt.hashSync('123456', config.saltRounds),
         role: params.user.roles.admin,
+        style: 'classy',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: 'The User',
+        name: 'The User 1',
         email: 'user@crate.com',
         password: bcrypt.hashSync('123456', config.saltRounds),
         role: params.user.roles.user,
+        style: 'casual',
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -33,6 +35,9 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
   // does this also delete its dependants? - subscriptions 
   // is that not a problem?
-    return queryInterface.bulkDelete('users', null, {});
+    return (
+      queryInterface.bulkDelete('subscriptions', null, {}),
+      queryInterface.bulkDelete('users', null, {})
+    )
   }
 }

@@ -41,9 +41,16 @@ class Item extends PureComponent {
       .then(response => {
         if (response.data.errors && response.data.errors.length > 0) {
           this.props.messageShow(response.data.errors[0].message)
-        } else {
+        // need a second if statement if this is the first subscrption 
+        // } else if (this.props.user.details.subscriptions) {
+        //   this.props.messageShow('Subscribed successfully.')
+        //   this.props.history.push(userRoutes.styleSurvey.path)
+      } else {
+        console.log(this.props)
+          // successful subscription show this message then redirect
           this.props.messageShow('Subscribed successfully.')
-
+          // redirect to userRoutes subscriptions path
+          // follow it to --> 
           this.props.history.push(userRoutes.subscriptions.path)
         }
       })

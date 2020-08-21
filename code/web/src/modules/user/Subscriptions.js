@@ -46,6 +46,17 @@ class Subscriptions extends PureComponent {
               anytime.</p>
           </GridCell>
         </Grid>
+        {/* This is where my-style should be populated 
+        <Grid style={{ backgroundColor: grey}}>
+          <GridCell style={{ padding: '2em', textAlign: 'center'}}>
+          { 
+            this.props.user.details.style 
+              ? <H3 font="secondary">Your Style: {props.user.details.style}</H3>
+              : <H3 font="secondary">You have no style. Subscrube to a crate to find style</H3>
+          }
+          </GridCell>
+        </Grid>
+        */}
 
         {/* Product list */}
         <Grid>

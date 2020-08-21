@@ -122,7 +122,7 @@ export function get(slug, isLoading = true) {
 
 // Create subscription
 // when a user clicks 'subscribe to crate' we end up here
-// variables would be 'crateID'
+// 'variables' would be 'crateID' = '123'
 // axios is running a mutation called subscriptionCreate
 // go to subscriptionCreate in mutation
 export function create(variables) {
