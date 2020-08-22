@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 import serverConfig from '../../config/server'
 import params from '../../config/params'
 import models from '../../setup/models'
+import { validateSDL } from 'graphql/validation/validate'
 // call these methods on User
 // create
 // login
@@ -37,7 +38,45 @@ export async function create(parentValue, { name, email, password }) {
 // Update user for STYLE
 // what does parentValue do? included for consistency
 export async function update(parentValue, {id, style}){ 
-  
+  // first need to determine style 
+  let styleCount = {}
+  // tally all the times eachs style has been selected
+  style.forEach(styleType => {
+    if (styleCount.styleType === null) {
+      styleCount.styleType = 1;
+    } else {
+      styleCount.styleType ++;
+    }
+  });
+  // find the highest values of style
+  // this is much easier in ruby...
+  // to order these values:
+    // split them into keys and values 
+    // make a copy of values and reorder them 
+    // find the index position of the 0 index on sorted vals
+    // pull the key using that index. DONE.
+  let styleKeys = Object.keys(styleCount);
+  let styleVals = Object.values(styleCount);
+  // make a copy, then sort highest to lowest
+  const styleValsSorted = styleVals.slice().sort((a,b) => a > b ? -1 : 1)
+
+  let firstStyle = styleKeys[styleVals.indexOf(styleValsSorted[0])]
+  let secondStyle = styleKeys[styleVals.indexOf(styleValsSorted[1])]
+  let thirdStyle = styleKeys[styleVals.indexOf(styleValsSorted[2])]
+
+  // put top 3 styles into a stylish string
+  let userStyle = `${firstStyle} but ${secondStyle}, with a touch of ${thirdStyle}`
+
+  // assign them to the user model.
+  return await models.User.update( 
+    // assign style
+    {
+      style: userStyle
+    }, 
+    // assign to the correct user
+    { where: { id }}
+  )
+
 }
 
 export async function login(parentValue, { email, password }) {
