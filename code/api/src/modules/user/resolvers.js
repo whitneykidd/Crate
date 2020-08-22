@@ -34,6 +34,12 @@ export async function create(parentValue, { name, email, password }) {
   }
 }
 
+// Update user for STYLE
+// what does parentValue do? included for consistency
+export async function update(parentValue, {id, style}){ 
+  
+}
+
 export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
 

@@ -18,8 +18,8 @@ describe('product mutations', () => {
     )
   })
 
-  it('creates and deletes products', async () => {
-    // *** unable to figure out how to authenticate an admin before creating product....
+  // *** unable to figure out how to authenticate an admin before creating product....
+  it.skip('creates and deletes products', async () => {
 
     // const response = await request(server)
     //   .post('/')

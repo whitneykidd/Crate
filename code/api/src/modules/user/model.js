@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
     role: {
       type: DataTypes.TEXT
     },
+    // sequelize is the ORM. this formats style into the correct datatype
     style: {
       type: DataTypes.TEXT
     }

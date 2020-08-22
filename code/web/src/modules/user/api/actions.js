@@ -118,3 +118,17 @@ export function getGenders() {
     }))
   }
 }
+
+// update user style 
+// when a user clicks submit on the style survey we end up here
+// style results should be an array of styles ['classy', 'casual', 'classy'...]
+export function updateStyle(variables) { // variables will `be styleResults`
+  return dispatch => {
+    return axios.post(routeApi, mutation)({ // we will have to add a mutation to api -> users
+      operation: 'updateStyle',
+      variables, // ['classy', 'casual', 'classy'...]
+      fields: ['id'] // id of the user so we update the correct user.
+    })
+  }
+
+}

@@ -41,3 +41,23 @@ export const userRemove = {
   },
   resolve: remove
 }
+
+// update user style 
+// after a user submits their style survey they should hit web/src/modules/user/api/actions
+export const userUpdateStyle = {
+  type: UserType,
+  // updateStyle is passed an id and a style string
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLInt
+    },
+    style: {
+      name: 'style',
+      type: GraphQLString
+    }
+  },
+  // need to create a new resolve method for update user
+  // why is this blue?
+  resolve: update
+}

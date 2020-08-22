@@ -25,8 +25,9 @@ describe('user queries', () => {
       .send({ query: '{ users { id name email } }'}) // `users` has to match whats in the query
       .expect(200) // status code
       // console.log(response.body.data.users)
-      console.log(`all users ${response.body.data.users.length}`)
-      expect(response.body.data.users.length).toEqual(2)
+      // console.log(`all users ${response.body.data.users.length}`)
+      expect(typeof response.body.data.users).toEqual('object')
+      expect(typeof response.body.data.dogs).toEqual('undefined')
   })
   
   it('returns user by id', async () => {

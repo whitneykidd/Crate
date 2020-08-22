@@ -25,6 +25,7 @@ class Layout extends PureComponent {
 
         {/* Page Content */}
         <section style={{ marginTop: '5em' }}>
+          {/* this populates the page with the correct page body*/}
           {children}
         </section>
 
