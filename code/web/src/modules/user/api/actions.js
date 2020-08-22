@@ -117,3 +117,31 @@ export function getGenders() {
     }))
   }
 }
+
+// ln2-4: Package imports
+// ln7: routeApi is a variable name for process.env.APP_URL_API which process
+// environment to find api address.
+// ln10-13: These are our action types that will fire off reducer and return respective
+// state redux store
+// ln18-26: setUser() - function that will set user when LOGIN_REQUEST fulfill or on page
+// load if token/user exist in localStorage(refer to root index.js file) returns an action
+// ln29-67: login fn handles user login request, it does so in a number of steps:
+    // ln31-34: first dispatch, isLoading is changed to true; is loading message
+    // diplayed on dom
+    // ln36-40: This is our request to db, unfamiliar with axios & graphql it's hard to
+    // which syntax belong to which library - warrant further exploring
+    // ln41-59: then code block handles db response. If error exists, error message
+    // is set to variable and eventually dispatched to state (ln55-58)
+    // Else if token is not an empty string, setUser() is dispatched to set user and token
+    // to state and another function set them to localStorage.
+    // ln55-59: an action is dispatched that will return isLoading to false and error if it exists
+    // ln60-64: second error boundary previous boundary would catch incorrect credentials
+    // this catch may provide error handling for a down server.
+// ln 70-77: Helper function store user & token in localStorage and in cookie
+// unsure of how cookies work.
+// ln80-88: Register user to database. Axios post request, graphql register mutation
+// or that's how I'm interpreting the syntax
+// ln91-109: These line will dispatch an action that will reset user details to null
+// and will remove any information stored in localStorage
+// ln112-119: An axios request to db to get user gender, not sure the extent that
+// gender plays for app functionality and how this may be adapted to be more inclusive.

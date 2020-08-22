@@ -47,3 +47,9 @@ export default (state = userInitialState, action) => {
       return state
   }
 }
+
+// ln2: isEmpty helper fn that checks for an object property return a boolean
+// ln3: Action types defined within action.js under same directory
+// ln6-11: This is our initial state
+// ln14-49: This compromises the reducer that handles user login state and
+// authentication through a number or request. Refer to action.js fo action logic.
