@@ -36,7 +36,8 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      // added style here to see it when user.details is called
+      fields: ['user {name, email, role, id, style}', 'token']
     }))
       .then(response => {
         let error = ''

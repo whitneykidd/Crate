@@ -54,7 +54,9 @@ export async function login(parentValue, { email, password }) {
         id: userDetails.id,
         name: userDetails.name,
         email: userDetails.email,
-        role: userDetails.role
+        role: userDetails.role,
+        // must add user style here for it to show up un user.details
+        style: userDetails.style
       }
 
       return {
