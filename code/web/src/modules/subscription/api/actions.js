@@ -55,6 +55,7 @@ export function getList(isLoading = true) {
 
 
 // Get list of subscriptions by user
+// after clicking unsubscribe we get here
 export function getListByUser(isLoading = true) {
   return dispatch => {
     dispatch({
@@ -64,6 +65,7 @@ export function getListByUser(isLoading = true) {
     })
 
     return axios.post(routeApi, query({
+      // after the subscription is removed, we stay on the same page and ask for the remaining subscriptions
       operation: 'subscriptionsByUser',
       fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt']
     }))

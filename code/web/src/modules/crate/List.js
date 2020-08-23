@@ -1,18 +1,33 @@
 // Imports
+// base components
 import React, { PureComponent } from 'react'
+// allows us to user .prop?
 import PropTypes from 'prop-types'
+// react-redux components
 import { connect } from 'react-redux'
+// Helmet feels like it is 'ontop'
 import { Helmet } from 'react-helmet'
 
 // UI Imports
+// grid is a style format
 import { Grid, GridCell } from '../../ui/grid'
+// header properties
 import { H3 } from '../../ui/typography'
+// background colors
 import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
+// getCratesList is an alias for getList action defined in './api/actions'
+// getList -> generate a list of the crates in desc order with 
+// fields: 'id', 'name', 'description', 'createdAt', 'updatedAt'
 import { getList as getCratesList } from './api/actions'
+// Loading is a page flash message that says 'loading...'
 import Loading from '../common/Loading'
+// EmptyMessage is a paragraph that displays a message based on 'props.message' (given as argument)
+// starting to think of props as 'params'
 import EmptyMessage from '../common/EmptyMessage'
+// CrateItem dne in ./Item, but I believe its related to item
+// cant find CrateItem...
 import CrateItem from './Item'
 
 // Component (list)
@@ -27,7 +42,7 @@ class List extends PureComponent {
   componentDidMount() {
     this.props.getCratesList('ASC')
   }
-// this displays text and data onscreen
+// this displays text and data on screen
 // being pulled in from routes/crate/list
   render() {
     // console.log(this);

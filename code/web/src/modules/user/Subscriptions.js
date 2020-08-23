@@ -10,6 +10,7 @@ import { H3 } from '../../ui/typography'
 import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
+// getListByUser is a method to return all the subscriptions for a given user
 import { getListByUser } from '../subscription/api/actions'
 import Loading from '../common/Loading'
 import EmptyMessage from '../common/EmptyMessage'

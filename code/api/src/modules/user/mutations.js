@@ -3,7 +3,8 @@ import { GraphQLString, GraphQLInt } from 'graphql'
 
 // App Imports
 import { UserType } from './types'
-import { create, remove } from './resolvers'
+// need to add update to this list
+import { create, remove, update} from './resolvers'
 
 // note: only create and remove. No udpate for user\
 
@@ -58,6 +59,6 @@ export const userUpdateStyle = {
     }
   },
   // need to create a new resolve method for update user
-  // why is this blue?
+
   resolve: update
 }

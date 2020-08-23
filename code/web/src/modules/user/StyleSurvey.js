@@ -1,4 +1,8 @@
 // IMPORTS!
+// Imports
+
+// UI Imports
+
 // App imports
 import { updateStyle } from '../user/api/actions'
 import { create } from '../subscriptions/api/actions'
@@ -18,8 +22,6 @@ class StyleSurvey extends PureComponent {
     })
 
     this.props.messageShow('Determining your style, please wait...')
-    // still have to create the crateId
-    this.props.create({ crateId })
     this.props.updateStyle({ styleResults })
       .then(response => {
         if (response.data.errors && response.data.errors.length > 0) {

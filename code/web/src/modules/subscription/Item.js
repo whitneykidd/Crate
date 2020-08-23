@@ -27,23 +27,30 @@ class Item extends PureComponent {
     }
   }
 
+  // is a user were to click susubscribe we follow this track
+  // very similar to the subscribe track
   onClickUnsubscribe = (id) => {
     let check = confirm('Are you sure you want to unsubscribe to this crate?')
 
     if(check) {
       this.setState({
+        // we are now loading
         isLoading: true
       })
-
+      // display a flash message.
+      // note this should probbaly say 'Unsubscribing, please wait
       this.props.messageShow('Subscribing, please wait...')
 
+      // remove the subscription given a unique subscription id
       this.props.remove({id})
         .then(response => {
+          // if there are errors, display them
           if (response.data.errors && response.data.errors.length > 0) {
             this.props.messageShow(response.data.errors[0].message)
           } else {
+            // otherwise show our success message
             this.props.messageShow('Unsubscribed successfully.')
-
+            // getListByUser is a method to populate the current list of subscriptions
             this.props.getListByUser()
           }
         })
@@ -63,20 +70,26 @@ class Item extends PureComponent {
   }
 
   render() {
+    // render the subscribed crates
     const { id, crate, createdAt } = this.props.subscription
     const { isLoading } = this.state
 
     return (
       <Card style={{ width: '18em', backgroundColor: white }}>
         <p style={{ padding: '2em 3em 0 3em' }}>
+          {/* display the standard box for each subscribed crate */}
           <img src={`${ APP_URL }/images/crate.png`} alt={ crate.name } style={{ width: '100%' }}/>
         </p>
 
         <div style={{ padding: '1em 1.2em' }}>
+          {/* display the subscribed crate name with formatting */}
           <H4 font="secondary" style={{ color: black }}>{ crate.name }</H4>
-
+          
+          {/* display the subscribed crate description with formatting */}
           <p style={{ color: grey2, marginTop: '1em' }}>{ crate.description }</p>
 
+          {/* display a button to unsubscribe. upon unsubscribing attach this and the crate id as passed arguments 
+          there is no redirect. we will stay on user/subscriptions but that subscription should be gone*/}
           <p style={{ textAlign: 'center', marginTop: '1.5em', marginBottom: '1em' }}>
             <Button
               theme="secondary"

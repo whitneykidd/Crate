@@ -17,20 +17,23 @@ export const CRATES_GET_FAILURE = 'CRATES/GET_FAILURE'
 
 // Get list of crates
 export function getList(orderBy = 'DESC', isLoading = true) {
+  // what does dispatch do? feels like a call to action
   return dispatch => {
     dispatch({
       type: CRATES_GET_LIST_REQUEST,
       error: null,
       isLoading
     })
-// axios.post feels like an api call
+// axios.post feels like an api call -  similar to fetch
 // go find these fields
 // then take the response
 // if it is successful (200)
 // 'dispatch' will send data to the 'store'
     return axios.post(routeApi, query({
       operation: 'crates',
+      // order by = DESC
       variables: { orderBy },
+      // relevant attributes
       fields: ['id', 'name', 'description', 'createdAt', 'updatedAt']
     }))
       .then(response => {
@@ -39,6 +42,7 @@ export function getList(orderBy = 'DESC', isLoading = true) {
             type: CRATES_GET_LIST_RESPONSE,
             error: null,
             isLoading: false,
+            // `list` is a promise based value
             list: response.data.data.crates
           })
         } else {

@@ -48,10 +48,12 @@ const Home = (props) => (
 
         {/* Call to action */}
         {
+          // upon clicking crates app will check user status. if auth, go to crates list page
           props.user.isAuthenticated
             ? <Link to={crateRoutes.list.path}>
                 <Button theme="secondary" style={{ marginTop: '1em' }}>Get Subscription</Button>
               </Link>
+              // if not auth, take user to signup
             : <Link to={userRoutes.signup.path}>
                 <Button theme="secondary" style={{ marginTop: '1em' }}>Get Started</Button>
               </Link>
