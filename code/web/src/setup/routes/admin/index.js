@@ -15,3 +15,7 @@ const admin = {
 }
 
 export default admin
+
+// Here we are exporting the interity of admin routes as a single object
+// for other files to use/referance. This will be incorporated into yet another
+// index file to combine with general user route paths. 

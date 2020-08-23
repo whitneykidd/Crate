@@ -33,3 +33,6 @@ export default {
     component: WhatsNew
   }
 }
+
+// These are considered home routes, this could be because these routes are
+// all accessible from the whole app via the header nav bar.

@@ -9,3 +9,5 @@ export default {
     auth: true
   }
 }
+
+// Route to display a list of all crates to normal user.

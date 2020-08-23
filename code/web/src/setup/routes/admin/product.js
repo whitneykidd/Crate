@@ -24,3 +24,7 @@ export const productEdit = {
   auth: true,
   role: params.user.roles.admin
 }
+
+// similar to other admin routes, we have the main route where all products are
+// viewable and two added routes to add products or edit their information.
+// More dynamic routing is used here.

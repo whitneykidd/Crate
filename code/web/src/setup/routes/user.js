@@ -28,3 +28,6 @@ export default {
     auth: true
   }
 }
+
+// these are route associated with user status and registration. A page for each a
+// login, register, view profile info and any subscriptions

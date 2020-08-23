@@ -24,3 +24,11 @@ export const crateEdit = {
   auth: true,
   role: params.user.roles.admin
 }
+
+// Similar to user crates path, this allows us to view available crates.
+// However, there are a couple of additional details/routes. Namely,
+// all of these route objects include a role property to further
+// specify that these routes should be viewble by the appropriate user.
+// Admin crate routes have two additional routes: one to create a new crate
+// and another to edit an existing crate. Note: we are using a function to create
+// a dynamic path using crate id. 

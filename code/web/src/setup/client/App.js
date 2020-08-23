@@ -24,4 +24,9 @@ const App = () => (
 
 export default App
 
-// Here we can 
+// Here we can see how the layout component will eventually be rendered.
+// By wrapping all of our routes inside the layout component, we are able to
+// access our routes within the Layout component with this.props.children.
+// This is using an array prototype method 'map' to create all of our routes.
+// All our routes are imported from routes directory, where the index.js file
+// combines all our app routes.

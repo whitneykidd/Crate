@@ -9,3 +9,7 @@ export const subscriptionList = {
   auth: true,
   role: params.user.roles.admin
 }
+
+// A route that allows admin user to view all active subscriptions. It is a single
+// route since, unlike other admin routes, subscriptions should only be editable
+// by the user and not the admin.
