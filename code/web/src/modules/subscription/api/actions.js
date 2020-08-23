@@ -19,9 +19,13 @@ export const SUBSCRIPTIONS_GET_FAILURE = 'SUBSCRIPTIONS/GET_FAILURE'
 // Actions
 
 // Get list of subscriptions
+// action logic/. it makes use fo first reducer in action.js (w/i same directory)
+// dispatched request (loading state)., makes a request and depending on request 
+// status either dispatches successful response or failure action
 export function getList(isLoading = true) {
   return dispatch => {
     dispatch({
+      // action names are ALL CAPS
       type: SUBSCRIPTIONS_GET_LIST_REQUEST,
       error: null,
       isLoading
@@ -56,6 +60,8 @@ export function getList(isLoading = true) {
 
 // Get list of subscriptions by user
 // after clicking unsubscribe we get here
+// closely linked to 'state'
+// we can only see things in state
 export function getListByUser(isLoading = true) {
   return dispatch => {
     dispatch({
@@ -65,6 +71,7 @@ export function getListByUser(isLoading = true) {
     })
 
     return axios.post(routeApi, query({
+      // hit a subsrciption query called 'subscriptionsByUser'
       // after the subscription is removed, we stay on the same page and ask for the remaining subscriptions
       operation: 'subscriptionsByUser',
       fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt']
@@ -75,6 +82,7 @@ export function getListByUser(isLoading = true) {
             type: SUBSCRIPTIONS_GET_LIST_BY_USER_RESPONSE,
             error: null,
             isLoading: false,
+            // list is equal to user subscriptions
             list: response.data.data.subscriptionsByUser
           })
         } else {

@@ -21,12 +21,18 @@ export async function get(parentValue, { id }) {
 }
 
 // Get subscription by user
+// this populates a users subscriptions to 'user/subscriptions'
 export async function getByUser(parentValue, {}, { auth }) {
   if(auth.user && auth.user.id > 0) {
+    // if a user is who they say they are then hit the DB for a findAll
+    // for a specific user using their user.id
     return await models.Subscription.findAll({
       where: {
         userId: auth.user.id
       },
+      // not completely sure how the include function works
+      // feels like its asigning an alias ('as')
+      // where we can call subscription.user and subscription.crate
       include: [
         {model: models.User, as: 'user'},
         {model: models.Crate, as: 'crate'},
@@ -50,7 +56,7 @@ export async function getAll() {
 // Create subscription
 // ah yes, we are finally get there
 // models.Subscription.create looks familiar
-// this will create a crate with crateID (argumnet)
+// this will create a subscription attachted to a crate with crateID (argumnet)
 // and with userID obtained form auth.user.id
 // since subscriptions belong to users and crates this makes sense
 

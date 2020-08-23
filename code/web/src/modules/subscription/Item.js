@@ -111,6 +111,7 @@ class Item extends PureComponent {
 }
 
 // Component Properties
+// define 'props'
 Item.propTypes = {
   subscription: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
@@ -126,5 +127,5 @@ function itemState(state) {
     user: state.user
   }
 }
-
+// this seems to be responsbile for exporting the class as SubscriptionItem instead of just Item
 export default connect(itemState, { remove, getListByUser, messageShow, messageHide })(withRouter(Item))

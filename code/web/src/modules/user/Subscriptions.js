@@ -14,6 +14,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 import { getListByUser } from '../subscription/api/actions'
 import Loading from '../common/Loading'
 import EmptyMessage from '../common/EmptyMessage'
+// subscriotionItem is a method for creating each subscription crate dispayed on screen
 import SubscriptionItem from '../subscription/Item'
 
 // Component

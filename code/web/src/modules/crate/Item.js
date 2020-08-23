@@ -51,6 +51,7 @@ class Item extends PureComponent {
       .then(response => {
         // if errors, dispaly them
         if (response.data.errors && response.data.errors.length > 0) {
+          // 'messageShow' is a function called from common/api/actions
           this.props.messageShow(response.data.errors[0].message)
         // need a second if statement if this is the first subscrption 
         // } else if (this.props.user.details.style === null) {
@@ -85,6 +86,7 @@ class Item extends PureComponent {
   }
 
   // render is a function for displaying data
+  // from 'react'
   render() {
     // curious about this format. 
     // does this mean that `crate` has `id, name, description`?
@@ -110,6 +112,10 @@ class Item extends PureComponent {
             // on click, the action will be bound to `this` and the crate `id`
             // feels like arguments being passed
               theme="primary"
+              // without binding 'this' the contents would change
+              // this is defined on execution
+              // becuase we are binding 'this' it will use this enviornment 
+              // otherwise 'this' would refere to the button
               onClick={this.onClickSubscribe.bind(this, id)}
               type="button"
               // if loading, dont display subscribe button
@@ -126,7 +132,7 @@ class Item extends PureComponent {
 
 // Component Properties
 Item.propTypes = {
-  // are we setting these values?
+  // this is where we set the values attatched to 'props'
   // or are these what we have access to?
   // difference between `object` and `func` `isRequired`?
   crate: PropTypes.object.isRequired,
@@ -142,4 +148,7 @@ function itemState(state) {
   }
 }
 // export everything we created
+// similar to mapping state, but also actions
+// with router lets app know 
+
 export default connect(itemState, { create, messageShow, messageHide })(withRouter(Item))

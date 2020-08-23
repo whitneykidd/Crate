@@ -17,6 +17,7 @@ export const subscriptions = {
 }
 
 // Subscriptions by user
+// this is responsible for loading subscriptions onto 'user/subscriptions'
 export const subscriptionsByUser = {
   type: new GraphQLList(SubscriptionType),
   resolve: getByUser

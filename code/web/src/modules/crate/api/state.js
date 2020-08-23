@@ -20,6 +20,12 @@ const cratesInitialState = {
 }
 
 // State
+// Subscriptions
+// dispatch takes us here
+// a redux function that sets off every reducer
+// usually called cratesReducer
+// a reducer is the first level of property
+// reducers are similar to a resolver
 export const crates = (state = cratesInitialState, action) => {
   switch (action.type) {
     case CRATES_GET_LIST_REQUEST:

@@ -27,7 +27,7 @@ import Loading from '../common/Loading'
 // starting to think of props as 'params'
 import EmptyMessage from '../common/EmptyMessage'
 // CrateItem dne in ./Item, but I believe its related to item
-// cant find CrateItem...
+// because there is only one component on './item' we can call it whatever we want
 import CrateItem from './Item'
 
 // Component (list)
@@ -102,5 +102,5 @@ function listState(state) {
     crates: state.crates
   }
 }
-
+// destructuring an object
 export default connect(listState, { getCratesList })(List)

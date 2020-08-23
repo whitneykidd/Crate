@@ -12,6 +12,7 @@ module.exports = {
         // Sequalize is a promise-based ORM for dbs like postgres
         type: Sequelize.INTEGER
       },
+      // subscriptions belong to users
       userId: {
         type: Sequelize.INTEGER,
         references: {
@@ -20,6 +21,7 @@ module.exports = {
         },
         allowNull: false
       },
+      // subscriptions belong to crates
       crateId: {
         type: Sequelize.INTEGER,
         references: {

@@ -25,6 +25,7 @@ const subscriptionsInitialState = {
 // State
 export const subscriptions = (state = subscriptionsInitialState, action) => {
   switch (action.type) {
+    // action variables are always ALL CAPS
     case SUBSCRIPTIONS_GET_LIST_REQUEST:
       return {
         ...state,
@@ -102,6 +103,7 @@ const subscriptionInitialState = {
 
 // State
 export const subscription = (state = subscriptionInitialState, action) => {
+  // switch command: similar to an if statement
   switch (action.type) {
     case SUBSCRIPTIONS_GET_REQUEST:
       return {
