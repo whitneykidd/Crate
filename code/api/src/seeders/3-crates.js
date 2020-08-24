@@ -43,7 +43,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    // return queryInterface.bulkDelete('crates', null, {});
     return (
       queryInterface.bulkDelete('subscriptions', null, {}), //was causing foreign key error 
       queryInterface.bulkDelete('crates', null, {})
