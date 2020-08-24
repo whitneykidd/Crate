@@ -30,7 +30,8 @@ class Item extends PureComponent {
 
   // function that will run when user click Subscribe button, like elsewhere
   // a loading state is set while other actions transpire. An action from common
-  // module api is brought in to display a message. 
+  // module api is brought in to display a message. By pushing onto history we are
+  // navigating to subscriptions page, where our new subscription will be displayed
   onClickSubscribe = (crateId) => {
     this.setState({
       isLoading: true
@@ -107,5 +108,6 @@ function itemState(state) {
     user: state.user
   }
 }
-
+// Here we can see how this component will connet to the store and with
+// dispatch actions it will be allowed to access.
 export default connect(itemState, { create, messageShow, messageHide })(withRouter(Item))

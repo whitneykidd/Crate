@@ -59,6 +59,10 @@ export function getList(isLoading = true) {
 
 
 // Get list of subscriptions by user
+// This gets a single user's subscriptions the response data will be structured
+// following the blueprint on fields property of query body of axios request
+// similar flow of loading state, api request, reponse added to state (loading
+// turned off) with error handling/failure action
 export function getListByUser(isLoading = true) {
   return dispatch => {
     dispatch({
@@ -125,7 +129,9 @@ export function get(slug, isLoading = true) {
 }
 
 // Create subscription
-// this creates a subscription in our database associated with user 
+// this creates a subscription in our database associated with user.
+// Api directories to reference: under src/modules/ look into subscription and
+// user for link between them.
 export function create(variables) {
   return dispatch => {
     return axios.post(routeApi, mutation({
@@ -137,6 +143,8 @@ export function create(variables) {
 }
 
 // Remove subscription
+// The counterpart to the above function, this removes a subscription from
+// subscriptionsByUser list.
 export function remove(variables) {
   return dispatch => {
     return axios.post(routeApi, mutation({
