@@ -22,6 +22,11 @@ const subscriptionsInitialState = {
   list: []
 }
 
+// probably want to add a style property
+// to individual subscriptions
+
+
+
 // State
 export const subscriptions = (state = subscriptionsInitialState, action) => {
   switch (action.type) {

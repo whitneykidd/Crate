@@ -12,8 +12,17 @@ export const userInitialState = {
 
 // State
 export default (state = userInitialState, action) => {
+  // switch is like an "if" statement on steroids
+  // it compares the cases and says "if" the case is true - due the thing
+  // state is the same as "app.state"
+  // action is data: think of a payload as carrying some data -- 
+  // then in the switch it compares the action with the case, if 
+  // they match - do the thing.
+
   switch (action.type) {
     case SET_USER:
+      // i need to go to the actions file and see what SET_USER is!
+      // SET_USER is a reducer!!!!!!
       return {
         ...state,
         isAuthenticated: !isEmpty(action.user),

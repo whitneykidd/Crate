@@ -1,6 +1,8 @@
 // Imports
 
 // App Imports
+
+// these are the actions available to us
 import {
   CRATES_GET_LIST_REQUEST,
   CRATES_GET_LIST_RESPONSE,
@@ -19,9 +21,11 @@ const cratesInitialState = {
   list: []
 }
 
+
 // State
 export const crates = (state = cratesInitialState, action) => {
   switch (action.type) {
+    // this happens after user logs in
     case CRATES_GET_LIST_REQUEST:
       return {
         ...state,
@@ -29,6 +33,9 @@ export const crates = (state = cratesInitialState, action) => {
         error: null
       }
 
+
+      // these cases are tested once logged in , and tests whether
+      // app has crates to load or not
     case CRATES_GET_LIST_RESPONSE:
       return {
         ...state,
@@ -36,6 +43,8 @@ export const crates = (state = cratesInitialState, action) => {
         error: action.error,
         list: action.list
       }
+
+  
 
     case CRATES_GET_LIST_FAILURE:
       return {
@@ -51,6 +60,8 @@ export const crates = (state = cratesInitialState, action) => {
 
 // Single crate
 
+// this is more relative to an admin
+
 // Initial State
 const crateInitialState = {
   isLoading: false,
@@ -61,6 +72,9 @@ const crateInitialState = {
 // State
 export const crate = (state = crateInitialState, action) => {
   switch (action.type) {
+
+    // this does something similar to the switch above
+    // except that it is for one crate, 
     case CRATES_GET_REQUEST:
       return {
         ...state,
