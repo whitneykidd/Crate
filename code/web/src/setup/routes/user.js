@@ -31,3 +31,5 @@ export default {
 
 // these are route associated with user status and registration. A page for each a
 // login, register, view profile info and any subscriptions
+// Given that style is associated with the user, I think the /style-preferences
+// path should belong here as '/user/style-preferences'

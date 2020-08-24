@@ -32,6 +32,8 @@ class Item extends PureComponent {
   // a loading state is set while other actions transpire. An action from common
   // module api is brought in to display a message. By pushing onto history we are
   // navigating to subscriptions page, where our new subscription will be displayed
+  // NOTE: a conditional within this function may redirect us style survey if user
+  // does not yet have a style defined
   onClickSubscribe = (crateId) => {
     this.setState({
       isLoading: true
