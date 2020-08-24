@@ -1,3 +1,6 @@
+/* code-annotations-wk
+  call to action authenticates user and sends to crate.list
+*/
 // Imports
 import React from 'react'
 import PropTypes from 'prop-types'

@@ -35,6 +35,9 @@ class Item extends PureComponent {
 
     this.props.messageShow('Subscribing, please wait...')
 
+/* code-annotations-wk
+    this method will tie user and crate together for subscription
+*/
     this.props.create({ crateId })
       .then(response => {
         if (response.data.errors && response.data.errors.length > 0) {

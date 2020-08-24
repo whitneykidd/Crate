@@ -5,6 +5,10 @@ import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 import { UserType } from '../user/types'
 import CrateType from '../crate/types'
 
+/* code-annotations-wk
+  defines what attributes a subscription holds
+*/
+
 // Subscription type
 const SubscriptionType = new GraphQLObjectType({
   name: 'subscription',
