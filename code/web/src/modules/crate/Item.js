@@ -28,6 +28,9 @@ class Item extends PureComponent {
     }
   }
 
+  // function that will run when user click Subscribe button, like elsewhere
+  // a loading state is set while other actions transpire. An action from common
+  // module api is brought in to display a message. 
   onClickSubscribe = (crateId) => {
     this.setState({
       isLoading: true

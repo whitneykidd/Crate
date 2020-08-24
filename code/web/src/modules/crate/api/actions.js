@@ -15,7 +15,13 @@ export const CRATES_GET_FAILURE = 'CRATES/GET_FAILURE'
 
 // Actions
 
-// Get list of crates
+// Get list of crates - this action is responsible for populating app's list
+// of available crates to subscribe to. Makes use of crates reducer in
+// state.js file under same directory.
+// Like other actions handling api request, first dispatch changes state to
+// loading, second dispatch sets response data to crates list store segment
+// if response has a 200 status, otherwise an error is inserted into crate store
+// segment
 export function getList(orderBy = 'DESC', isLoading = true) {
   return dispatch => {
     dispatch({
@@ -52,6 +58,8 @@ export function getList(orderBy = 'DESC', isLoading = true) {
 }
 
 // Get single crate
+// Similar to action above, but this most likely is used when an admin is logged
+// in in order to edit a crate
 export function get(slug, isLoading = true) {
   return dispatch => {
     dispatch({
@@ -82,6 +90,8 @@ export function get(slug, isLoading = true) {
   }
 }
 
+// The following actions seem more relevant to admin, which
+// dow not interact with ousr user story. Existing comment are sufficient.
 // Get single crate by Id
 export function getById(crateId) {
   return dispatch => {

@@ -66,18 +66,21 @@ class List extends PureComponent {
     )
   }
 }
-
 // Component Properties
 List.propTypes = {
   crates: PropTypes.object.isRequired,
   getCratesList: PropTypes.func.isRequired
 }
 
-// Component State
+// Component State - this is a function returning state so that
+// state/componentProps stay in tune, in other words when an action fires
+// this allows state to be recreated for component.
 function listState(state) {
   return {
     crates: state.crates
   }
 }
 
+// Here we are connecting crate store segment to component along with a single
+// dispatch/action to get the inital Crates list. 
 export default connect(listState, { getCratesList })(List)

@@ -18,7 +18,7 @@ import crateRoutes from '../../setup/routes/crate'
 import userRoutes from '../../setup/routes/user'
 import Onboarding from './Onboarding'
 
-// Component
+// Component/ this is our landing page for localhost:3000/
 const Home = (props) => (
   <div>
     {/* Home */}
@@ -44,7 +44,8 @@ const Home = (props) => (
           Your monthly subscription of trendy clothes and accessories
         </H4>
 
-        {/* Call to action */}
+        {/* Call to action wether there's a user in localStorage or not, we are taken
+        to either all crates page or signup page*/}
         {
           props.user.isAuthenticated
             ? <Link to={crateRoutes.list.path}>

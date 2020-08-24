@@ -19,6 +19,10 @@ export const SUBSCRIPTIONS_GET_FAILURE = 'SUBSCRIPTIONS/GET_FAILURE'
 // Actions
 
 // Get list of subscriptions
+// Action logic, it makes use of first reducer in action.js (w/i same directory)
+// dispatched request (loading state), makes a request, and depending on request
+// status either dispatches successful response or failure action with relavent
+// data
 export function getList(isLoading = true) {
   return dispatch => {
     dispatch({
@@ -121,6 +125,7 @@ export function get(slug, isLoading = true) {
 }
 
 // Create subscription
+// this creates a subscription in our database associated with user 
 export function create(variables) {
   return dispatch => {
     return axios.post(routeApi, mutation({

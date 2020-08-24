@@ -20,6 +20,7 @@ const cratesInitialState = {
 }
 
 // State
+// General crate reducer, which handles the crates api request and return
 export const crates = (state = cratesInitialState, action) => {
   switch (action.type) {
     case CRATES_GET_LIST_REQUEST:
