@@ -80,9 +80,43 @@ export async function getGenders() {
 
 // Update user
 export async function update(parentValue, { id, style }) {
+  let styleArray = style.split(', ')
+  let styleCount = {}
+
+  styleArray.forEach((val) => {
+    if (!styleCount[val]) {
+      styleCount[val] = 1
+    }
+    else {
+      styleCount[val]++
+    }
+  })
+
+  let styleKeys = Object.keys(styleCount);
+
+  let styleKeysSorted = styleKeys.sort(function (a, b) { return styleCount[a] - styleCount[b] }).reverse();
+
+  let firstStyle = "";
+  let secondStyle = "";
+  let thirdStyle = "";
+
+  if (styleKeysSorted.length > 0) {
+    firstStyle = styleKeysSorted[0]
+  }
+
+  if (styleKeysSorted.length > 1) {
+    secondStyle = ` but ${styleKeysSorted[1]}`
+  }
+
+  if (styleKeysSorted.length > 2) {
+    thirdStyle = ` with a touch of ${styleKeysSorted[2]}`
+  }
+
+  let userStyle = `${firstStyle}${secondStyle}${thirdStyle}`
+
     return await models.User.update(
       {
-        style: style
+        style: userStyle
       },
       { where: { id } }
     )
