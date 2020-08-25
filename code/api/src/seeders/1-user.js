@@ -12,6 +12,7 @@ module.exports = {
         email: 'admin@crate.com',
         password: bcrypt.hashSync('123456', config.saltRounds),
         role: params.user.roles.admin,
+        style: 'Classy',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -20,6 +21,7 @@ module.exports = {
         email: 'user@crate.com',
         password: bcrypt.hashSync('123456', config.saltRounds),
         role: params.user.roles.user,
+        style: 'Casual',
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -27,6 +29,9 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('users', null, {});
+    return (
+      queryInterface.bulkDelete('subscriptions', null, {}), //was causing foreign key error 
+      queryInterface.bulkDelete('users', null, {})
+    )
   }
 }
