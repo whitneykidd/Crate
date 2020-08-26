@@ -72,26 +72,28 @@ describe('product quereis', () => {
       expect(responseOne.body.data.productById.name).toEqual("name2")
       expect(responseOne.body.data.productById.id).toEqual(productId)
   })
-  //'t-shirt-for-men-grey'
-  // it('returns crates and crate given an ID', async () => {
-  //   const responseAll = await request(server)
-  //     .get('/')
-  //     .send({ query: `{crates (orderBy: "asc") {id name description}}` })
-  //     .expect(200)
 
-  //   expect(responseAll.body.data.crates.length).toEqual(6)
-  //   expect(responseAll.body.data.crates[0].name).toEqual("Clothes for Men")
-  //   expect(responseAll.body.data.crates[0].description).toEqual("A monthly supply of trendy clothes for men.")
-  //   let crateId = responseAll.body.data.crates[0].id
+  it('returns product by slug', async () => {
+    const response = await request(server)
+      .get('/')
+      .send({ query: `{product(slug: "slug1") {id name slug type gender description }}` })
+      .expect(200)
 
-  //   const responseOne = await request(server)
-  //     .get('/')
-  //     .send({ query: `{crateById (crateId: ${crateId}) {id name description}}` })
-  //     .expect(200)
+    expect(response.body.data.product.name).toEqual("name1")
+    expect(response.body.data.product.slug).toEqual("slug1") 
+  })
 
-  //   expect(responseOne.body.data.crateById.name).toEqual("Clothes for Men")
-  //   expect(responseOne.body.data.crateById.description).toEqual("A monthly supply of trendy clothes for men.")
-  //   expect(responseOne.body.data.crateById.id).toEqual(crateId)
-  // })
+  it('returns product types', async () => {
+    const response = await request(server)
+      .get('/')
+      .send({ query: `{productTypes{name id}}` })
+      .expect(200)
+
+    expect(response.body.data.productTypes.length).toEqual(2)
+    expect(response.body.data.productTypes[0].id).toEqual(1)
+    expect(response.body.data.productTypes[0].name).toEqual("Cloth")
+    expect(response.body.data.productTypes[1].id).toEqual(2)
+    expect(response.body.data.productTypes[1].name).toEqual("Accessories")
+  })
 
 })
