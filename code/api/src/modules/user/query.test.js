@@ -57,7 +57,7 @@ describe("user queries", () => {
   it('returns all users', async () => {
     const response = await request(server)
       .get('/')
-      .send({ query: '{users {name email password } }' })
+      .send({ query: '{users {name email } }' })
       .expect(200)
 
     expect(response.body.data.users.length).toEqual(3)
