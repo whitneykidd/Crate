@@ -29,7 +29,7 @@ export function getList(isLoading = true) {
 
     return axios.post(routeApi, query({
       operation: 'subscriptions',
-      fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt']
+      fields: ['id', 'user { name, email, style }', 'crate { id, name, description }', 'createdAt']
     }))
       .then(response => {
         if (response.status === 200) {
@@ -65,7 +65,7 @@ export function getListByUser(isLoading = true) {
 
     return axios.post(routeApi, query({
       operation: 'subscriptionsByUser',
-      fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt']
+      fields: ['id', 'user { name, email, style }', 'crate { id, name, description }', 'createdAt']
     }))
       .then(response => {
         if (response.status === 200) {
