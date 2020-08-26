@@ -20,7 +20,26 @@ describe('user mutations', () => {
     expect(true).toBe(true)
   })
 
-  it('updates a user style', async() => {
+
+  it('creates a user', async () => {
+    const response = await request(server)
+      .post('/')
+      .send({
+        query: `mutation{
+          userSignup(name:"Pikachu", email:"pika_pika@email.com", password: "pika_password"){
+            name
+            style
+            id
+          }
+        }`
+      })
+      .expect(200)
+
+    expect(response.body.data.userSignup.style).toBe(null)
+    expect(response.body.data.userSignup.name).toEqual("Pikachu")
+  })
+    
+  it('updates a user attributes', async() => {
     const responseCreate = await request(server)
       .post('/')
       .send({
