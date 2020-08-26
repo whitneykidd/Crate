@@ -4,7 +4,7 @@ import schema from '../../setup/schema'
 import graphqlHTTP from 'express-graphql'
 
 
-describe('user mutations', () => {
+describe('crate mutations', () => {
   let server;
 
   beforeAll(() => { // get the server running and attached for each of our future tests
@@ -50,19 +50,3 @@ describe('user mutations', () => {
   })
 
 })
-
-
-  // it('creates, updates style, and deletes new user', async () => {
-  //   // create a new user - default has style === null
-  //   const responseCreate = await request(server)
-  //     .post('/')
-  //     .send({
-  //       query: `mutation { userSignup(name: "dog", 
-  //                                   email: "dog@dog.com", 
-  //                                   password: "dog") 
-  //                                   { id name style}}`})
-  //     .expect(200)
-
-  //   expect(responseCreate.body.data.userSignup.name).toEqual("dog")
-  //   expect(responseCreate.body.data.userSignup.style).toEqual(null)
-  //   let userID = responseCreate.body.data.userSignup.id
