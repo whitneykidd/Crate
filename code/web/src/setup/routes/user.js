@@ -30,7 +30,7 @@ export default {
   },
 
   survey: {
-    path: '/user/subscriptions',
+    path: '/user/survey',
     component: DummyComponent,
     auth: true
   }
