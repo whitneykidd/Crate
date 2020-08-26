@@ -3,7 +3,8 @@ import Login from '../../modules/user/Login'
 import Signup from '../../modules/user/Signup'
 import Profile from '../../modules/user/Profile'
 import Subscriptions from '../../modules/user/Subscriptions'
-import DummyComponent from '../../modules/extra/DummyComponent'
+import StyleSurvey from '../../modules/styleSurvey/StyleSurvey'
+
 
 // User routes
 export default {
@@ -31,7 +32,7 @@ export default {
 
   survey: {
     path: '/user/survey',
-    component: DummyComponent,
+    component: StyleSurvey,
     auth: true
   }
 }
