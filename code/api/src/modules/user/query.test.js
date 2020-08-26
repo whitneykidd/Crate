@@ -48,7 +48,6 @@ describe("user queries", () => {
 
   afterEach(async () => {
     await models.User.destroy({ where: { name: ["User1", "User2"] } })
-    // await models.User.destroy({ where: {} })
   })
 
   afterAll(() => {
@@ -61,7 +60,7 @@ describe("user queries", () => {
       .send({ query: '{users {name email password } }' })
       .expect(200)
 
-    expect(response.body.data.users.length).toEqual(2)
+    expect(response.body.data.users.length).toEqual(3)
   })
 
   it('returns a specific user by id', async () => {

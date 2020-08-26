@@ -22,11 +22,11 @@ describe('user mutations', () => {
 
 
   it('creates a user', async () => {
-    const response = await request(server)
+    const responseCreate = await request(server)
       .post('/')
       .send({
         query: `mutation{
-          userSignup(name:"Pikachu", email:"pika_pika@email.com", password: "pika_password"){
+          userSignup(name:"New User", email:"new_email@email.com", password: "password"){
             name
             style
             id
@@ -35,8 +35,16 @@ describe('user mutations', () => {
       })
       .expect(200)
 
-    expect(response.body.data.userSignup.style).toBe(null)
-    expect(response.body.data.userSignup.name).toEqual("Pikachu")
+    let userId = responseCreate.body.data.userSignup.id
+    const responseDestroy = await request(server)
+      .post('/')
+      .send({
+        query: `mutation{
+          userRemove(id: ${userId}){
+            name
+          }
+        }`
+      })
   })
     
   it('updates a user attributes', async() => {
