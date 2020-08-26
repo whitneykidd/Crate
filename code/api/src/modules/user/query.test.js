@@ -54,7 +54,7 @@ describe("user queries", () => {
     db.close()
   })
 
-  it("returns all users", async () => {
+  it('returns all users', async () => {
     const response = await request(server)
       .get('/')
       .send({ query: '{users {name email password } }' })
@@ -101,7 +101,7 @@ describe("user queries", () => {
     // expect(response.body.data.userLogin.user.name).toEqual("User1")
   })
 
-  it('returns for a user', async () => {
+  it('returns style for a user', async () => {
     const response = await request(server)
       .get('/')
       .send({
