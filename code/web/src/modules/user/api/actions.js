@@ -46,7 +46,6 @@ export function login(userCredentials, isLoading = true) {
         } else if (response.data.data.userLogin.token !== '') {
           const token = response.data.data.userLogin.token
           const user = response.data.data.userLogin.user
-          console.log(user, 'login action')
 
           dispatch(setUser(token, user))
 
