@@ -19,6 +19,7 @@ describe('crate mutations', () => {
         graphiql: true, // use the graphiql feature
       })
     )
+    await models.Crate.destroy({ where: { name: ["crate1", "crate2"] } })
   })
 
   beforeEach( async () => {
