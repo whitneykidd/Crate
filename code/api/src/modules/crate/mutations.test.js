@@ -18,7 +18,7 @@ describe('crate mutations', () => {
 
     server.use(
       '/',
-      graphqlHTTP({
+      graphqlHTTP(request => ({
         schema: schema, // import the schema
         graphiql: true,
         context: {
@@ -28,6 +28,7 @@ describe('crate mutations', () => {
           }
         }
       })
+    )
     )
 
   })
