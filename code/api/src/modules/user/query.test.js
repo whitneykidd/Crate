@@ -16,7 +16,7 @@ describe("user queries", () => {
         graphiql: false
       })
     );
-    await models.User.destroy({ where: { name: ["User1", "User2", "New User"] } })
+    await models.User.destroy({ where: { name: ["User1", "User2"] } })
   });
 
   beforeEach(async () => {
