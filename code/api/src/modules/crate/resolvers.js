@@ -21,6 +21,7 @@ export async function getAll(parentValue, { orderBy }) {
 
 // Create crate
 export async function create(parentValue, { name, description }, { auth }) {
+  console.log(auth)
   if(auth.user && auth.user.role === params.user.roles.admin) {
     return await models.Crate.create({
       name,
