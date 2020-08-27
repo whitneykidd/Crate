@@ -32,11 +32,11 @@ class StyleSurvey extends PureComponent {
     this.setState({[event.target.name]: [...this.state[event.target.name], event.target.name]})
   }
 
-  // make a function that will make the section for us
-
-  generateButtonSections = (name) => {
-    // for each image return one of the inputs
-    // and the name of the input will be name arg
+  generateGarmentCheckboxes = (/*array of garments*/) => {
+    // create a div or section to hold the garments in the section
+    // iterate over array of garments
+    // for each garment return a check box with a key or id, relative to its style
+    // will do one for each garment category
   }
 
   
@@ -49,6 +49,7 @@ class StyleSurvey extends PureComponent {
         <h1>Style Survey</h1>
         <section onChange={event => this.handleChange(event)}>
           <h2>Tops</h2>
+          {/* here is where the generateGarmentCheckboxes section will go */}
           <input type='checkbox' name='tops'/>
           <input type='checkbox' name='tops'/>
           <input type='checkbox' name='tops'/>
