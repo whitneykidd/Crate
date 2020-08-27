@@ -27,9 +27,9 @@ class StyleSurvey extends PureComponent {
   }
 
   handleChange(event) {
-    event.preventDefault()
+    // event.preventDefault()
     // 
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({[event.target.name]: [...this.state[event.target.name], event.target.name]})
   }
 
   // make a function that will make the section for us
@@ -39,46 +39,49 @@ class StyleSurvey extends PureComponent {
     // and the name of the input will be name arg
   }
 
+  
+
 
 
   render() {
     return (
       <form>
         <h1>Style Survey</h1>
-        <section>
+        <section onChange={event => this.handleChange(event)}>
           <h2>Tops</h2>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='tops'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='tops'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='tops'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='tops'/>
+          <input type='checkbox' name='tops'/>
+          <input type='checkbox' name='tops'/>
+          <input type='checkbox' name='tops'/>
+          <input type='checkbox' name='tops'/>
         </section>
-        <section>
+        <section onChange={event => this.handleChange(event)}>
           <h2>Bottoms</h2>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
+          <input type='checkbox' name='bottoms'/>
+          <input type='checkbox' name='bottoms'/>
+          <input type='checkbox' name='bottoms'/>
+          <input type='checkbox' name='bottoms'/>
+       
         </section>
-        <section>
+        <section onChange={event => this.handleChange(event)}>
           <h2>Dresses</h2>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
+          <input type='checkbox' name='dresses'/>
+          <input type='checkbox' name='dresses'/>
+          <input type='checkbox' name='dresses'/>
+          <input type='checkbox' name='dresses'/>
         </section>
-        <section>
+        <section onChange={event => this.handleChange(event)}>
           <h2>Shoes</h2>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
-          <input onClick={event => this.handleChange(event)} type='checkbox' name='bottoms'/>
+          <input type='checkbox' name='shoes'/>
+          <input type='checkbox' name='shoes'/>
+          <input type='checkbox' name='shoes'/>
+          <input type='checkbox' name='shoes'/>
         </section>
-        <section>
+        <section onChange={event => this.handleChange(event)}>
           <h2>Accessories</h2>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
+          <input type='checkbox' name='accessories'/>
+          <input type='checkbox' name='accessories'/>
+          <input type='checkbox' name='accessories'/>
+          <input type='checkbox' name='accessories'/>
         </section>
       </form>
     )
