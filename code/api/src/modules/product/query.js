@@ -1,5 +1,5 @@
 // Imports
-import { GraphQLString, GraphQLInt, GraphQLList } from 'graphql'
+import { GraphQLString, GraphQLInt, GraphQLList, graphql } from 'graphql'
 
 // App Imports
 import { ProductType, ProductTypesType } from './types'
@@ -43,3 +43,4 @@ export const productTypes = {
   type: new GraphQLList(ProductTypesType),
   resolve: getTypes
 }
+

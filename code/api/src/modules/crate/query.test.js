@@ -40,7 +40,7 @@ describe('crate mutations', () => {
     await models.Crate.destroy({ where: {name: ["crate1", "crate2"]} })
   })
 
-  afterAll( async () => {
+  afterAll( () => {
     db.close();
   })
 
