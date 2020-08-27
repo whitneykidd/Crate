@@ -20,7 +20,34 @@ describe('user mutations', () => {
     expect(true).toBe(true)
   })
 
-  it('updates a user style', async() => {
+
+  it('creates a user', async () => {
+    const responseCreate = await request(server)
+      .post('/')
+      .send({
+        query: `mutation{
+          userSignup(name:"New User", email:"new_email@email.com", password: "password"){
+            name
+            style
+            id
+          }
+        }`
+      })
+      .expect(200)
+
+    let userId = responseCreate.body.data.userSignup.id
+    const responseDestroy = await request(server)
+      .post('/')
+      .send({
+        query: `mutation{
+          userRemove(id: ${userId}){
+            name
+          }
+        }`
+      })
+  })
+    
+  it('updates a user attributes', async() => {
     const responseCreate = await request(server)
       .post('/')
       .send({
@@ -72,6 +99,40 @@ describe('user mutations', () => {
           }
         }`
       })
+  })
+
+  it('deletes a user', async () => {
+    const responseCreate = await request(server)
+      .post('/')
+      .send({
+        query: `mutation{
+          userSignup(name:"New User", email:"new_email@email.com", password: "password"){
+            name
+            style
+            id
+          }
+        }`
+      })
+      .expect(200)
+
+    let userId = responseCreate.body.data.userSignup.id
+    const responseDestroy = await request(server)
+      .post('/')
+      .send({
+        query: `mutation{
+          userRemove(id: ${userId}){
+            name
+          }
+        }`
+      })
+    
+    const response = await request(server)
+      .get('/')
+      .send({ query: '{users {name email password } }' })
+      .expect(200)
+
+    expect(response.body.data.users.length).toEqual(1)
+
   })
 })
 

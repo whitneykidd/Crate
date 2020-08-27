@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/atulmy/crate#readme",
   "dependencies": {
-    "sequelize": "^6.3.4"
+    "sequelize": "^6.3.4",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.0"
