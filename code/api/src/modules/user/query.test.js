@@ -59,7 +59,6 @@ describe("user queries", () => {
       .get('/')
       .send({ query: '{users {name email } }' })
       .expect(200)
-console.log(response.body.data.users)
     expect(response.body.data.users.length).toEqual(4)
   })
 
@@ -97,8 +96,6 @@ console.log(response.body.data.users)
       .get('/')
       .send({ query: `{ userLogin(email: "user1@email.com", password: "user1password") { user { id name role email } } }` })
       .expect(200)
-    console.log(response.body.data)
-    // expect(response.body.data.userLogin.user.name).toEqual("User1")
   })
 
   it('returns style for a user', async () => {

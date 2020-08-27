@@ -80,8 +80,7 @@ describe('crate mutations', () => {
       {id name}}`
       })
       .expect(200)
-    console.log(response.body.data.productUpdate)
-    // expect(response.body.data.updateCrate)
+
 
     const responseProduct = await request(server)
       .get('/')
