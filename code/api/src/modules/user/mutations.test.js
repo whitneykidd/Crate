@@ -3,6 +3,7 @@ import express, { response } from 'express'
 import schema from '../../setup/schema'
 import graphqlHTTP from 'express-graphql'
 import { isType } from 'graphql'
+import models from '../../setup/models'
 
 describe('user mutations', () => {
   let server;
@@ -16,6 +17,11 @@ describe('user mutations', () => {
       })
     )
   })
+
+  afterAll(async() => {
+    await models.User.destroy({ where: {name: "New User"}})
+  })
+  
   it('is true', () => {
     expect(true).toBe(true)
   })
@@ -131,7 +137,7 @@ describe('user mutations', () => {
       .send({ query: '{users {name email password } }' })
       .expect(200)
 
-    expect(response.body.data.users.length).toEqual(1)
+    expect(response.body.data.users.length).toEqual(2)
 
   })
 })
