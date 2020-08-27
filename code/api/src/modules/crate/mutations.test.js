@@ -71,8 +71,7 @@ describe('crate mutations', () => {
       {id name description}}`
       })
       .expect(200)
-      console.log(response.body.data.crateUpdate)
-      // expect(response.body.data.updateCrate)
+
   })
 
   it('deletes a crate', async () => {
@@ -81,7 +80,6 @@ describe('crate mutations', () => {
       .set('Authorization', `Bearer ${token}`)
       .send({query: `mutation {crateRemove(id: ${crateId}){id name description}}`})
       .expect(200)
-    console.log(response.body.data.crateRemove)
   })
 
   })
