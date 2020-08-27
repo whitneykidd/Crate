@@ -59,8 +59,8 @@ describe("user queries", () => {
       .get('/')
       .send({ query: '{users {name email } }' })
       .expect(200)
-
-    expect(response.body.data.users.length).toEqual(3)
+console.log(response.body.data.users)
+    expect(response.body.data.users.length).toEqual(4)
   })
 
   it('returns a specific user by id', async () => {
