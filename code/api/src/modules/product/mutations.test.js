@@ -32,6 +32,7 @@ describe('crate mutations', () => {
       })
       )
     )
+    await models.Product.destroy({ where: { name: ["p1", "newt"] } })
   })
 
   beforeEach(async () => {
