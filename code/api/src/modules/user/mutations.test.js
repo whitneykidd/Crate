@@ -7,7 +7,7 @@ import models from '../../setup/models'
 
 describe('user mutations', () => {
   let server;
-  beforeAll(() => {
+  beforeAll( async () => {
     server = express();
     server.use(
       '/',
@@ -16,12 +16,13 @@ describe('user mutations', () => {
         graphiql: true,
       })
     )
+    await models.User.destroy({ where: { name: ["New User"] } })
   })
 
   afterAll(async() => {
-    await models.User.destroy({ where: {name: "New User"}})
+    await models.User.destroy({ where: {name: ["New User"]}})
   })
-  
+
   it('is true', () => {
     expect(true).toBe(true)
   })
