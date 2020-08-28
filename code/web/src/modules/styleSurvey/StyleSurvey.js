@@ -1,6 +1,8 @@
 // Imports
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import SurveyChoices from './surveyChoices'
+import accessories from '../../ui/surveyImages/accessories'
 // import e from 'express'
 // import { connect } from 'react-redux'
 
@@ -28,7 +30,7 @@ class StyleSurvey extends PureComponent {
 
   handleChange(event) {
     // event.preventDefault()
-    // 
+    //
     this.setState({[event.target.name]: [...this.state[event.target.name], event.target.name]})
   }
 
@@ -39,13 +41,14 @@ class StyleSurvey extends PureComponent {
     // will do one for each garment category
   }
 
-  
+
 
 
 
   render() {
     return (
       <form>
+      <SurveyChoices choices={accessories}/>
         <h1>Style Survey</h1>
         <section onChange={event => this.handleChange(event)}>
           <h2>Tops</h2>
@@ -61,7 +64,7 @@ class StyleSurvey extends PureComponent {
           <input type='checkbox' name='bottoms'/>
           <input type='checkbox' name='bottoms'/>
           <input type='checkbox' name='bottoms'/>
-       
+
         </section>
         <section onChange={event => this.handleChange(event)}>
           <h2>Dresses</h2>
