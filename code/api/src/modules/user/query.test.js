@@ -16,10 +16,10 @@ describe("user queries", () => {
         graphiql: false
       })
     );
-    await models.User.destroy({ where: { name: ["User1", "User2"] } })
   });
 
   beforeEach(async () => {
+
     const user1 = {
       id: 1,
       name: "User1",
@@ -41,33 +41,33 @@ describe("user queries", () => {
       updatedAt: new Date(),
       style: "Casual"
     };
-
+    await models.User.destroy({ where: {} })
     await models.User.create(user1);
     await models.User.create(user2);
   })
 
   afterEach(async () => {
-    await models.User.destroy({ where: { name: ["User1", "User2"] } })
+    await models.User.destroy({ where: {} })
   })
-
-  afterAll(() => {
+  
+  afterAll(async () => {
     db.close()
   })
 
   it('returns all users', async () => {
-    const response = await request(server)
+    const responseAllUsers = await request(server)
       .get('/')
       .send({ query: '{users {name email } }' })
       .expect(200)
-    expect(response.body.data.users.length).toEqual(4)
+    expect(responseAllUsers.body.data.users.length).toEqual(2)
   })
 
   it('returns a specific user by id', async () => {
-    const response = await request(server)
+    const responseId = await request(server)
       .get('/')
       .send({
         query: `{
-        user(id:1,){
+        user(id:1){
           name
           email
           password
@@ -77,33 +77,34 @@ describe("user queries", () => {
       }`
       })
       .expect(200)
-    expect(response.body.data.user.name).toEqual("User1")
-    expect(response.body.data.user.id).toEqual(1)
+    expect(responseId.body.data.user.name).toEqual("User1")
+    expect(responseId.body.data.user.id).toEqual(1)
   })
 
   it('returns user genders', async () => {
-    const response = await request(server)
+    const responseGender = await request(server)
       .get('/')
       .send({ query: '{ userGenders { id name } }' })
       .expect(200)
 
-    expect(response.body.data.userGenders[0].name).toEqual('Male')
-    expect(response.body.data.userGenders[1].name).toEqual('Female')
+    expect(responseGender.body.data.userGenders[0].name).toEqual('Male')
+    expect(responseGender.body.data.userGenders[1].name).toEqual('Female')
   })
 
   it('authorizes a valid user', async () => {
-    const response = await request(server)
+    const responseAuth = await request(server)
       .get('/')
       .send({ query: `{ userLogin(email: "user1@email.com", password: "user1password") { user { id name role email } } }` })
       .expect(200)
+
   })
 
   it('returns style for a user', async () => {
-    const response = await request(server)
+    const responseStyle = await request(server)
       .get('/')
       .send({
         query: `{
-        user(id:1,){
+        user(id:1){
           name
           email
           password
@@ -112,6 +113,6 @@ describe("user queries", () => {
         }
       }`
       })
-    expect(response.body.data.user.style).toEqual("Hip Hop but Punk")
+    expect(responseStyle.body.data.user.style).toEqual("Hip Hop but Punk")
   })
 })

@@ -5,10 +5,15 @@ import graphqlHTTP from 'express-graphql'
 import authentication from '../../setup/authentication'
 import models from '../../setup/models'
 import { isType } from 'graphql'
+import bcrypt from 'bcrypt'
+import config from '../../config/server.json'
+import db from '../../setup/database'
 
 
 
-describe('crate mutations', () => {
+
+describe('product mutations', () => {
+
   let server;
   let token;
   let productId;
@@ -32,10 +37,24 @@ describe('crate mutations', () => {
       })
       )
     )
-    await models.Product.destroy({ where: { name: ["p1", "newt"] } })
+    await models.Product.destroy({ where: {} })
   })
 
   beforeEach(async () => {
+    const adminUser = {
+      id: 5,
+      name: "adminProduct",
+      email: "admin@crate.com",
+      password: bcrypt.hashSync('123456', config.saltRounds),
+      role: "ADMIN",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      style: "Casual"
+    };
+
+    await models.User.destroy({where: {}});
+    await models.User.create(adminUser);
+    
     const responseLogin = await request(server)
       .get('/')
       .send({ query: `{userLogin(email: "admin@crate.com", password: "123456" ){token}}` })
@@ -43,9 +62,9 @@ describe('crate mutations', () => {
     token = responseLogin.body.data.userLogin.token
   })
 
-  afterAll(async () => {
-    await models.Product.destroy({where: {name: ["p1", "newt"]}})
-  })
+  // afterAll(async () => {
+  //   await models.User.destroy({ where: {} });
+  // })
 
   it('creates a product', async () => {
 
@@ -55,12 +74,12 @@ describe('crate mutations', () => {
       .send({
         query:
           `mutation {
-      productCreate(name: "p1", slug: "s1", description: "d1", type: 1, gender: 2, image: "i1")
+      productCreate(name: "name1", slug: "s1", description: "d1", type: 1, gender: 2, image: "i1")
       {id name slug description type gender image}}`
       })
       .expect(200)
 
-    expect(response.body.data.productCreate.name).toEqual("p1")
+    expect(response.body.data.productCreate.name).toEqual("name1")
     expect(response.body.data.productCreate.slug).toEqual("s1")
     expect(response.body.data.productCreate.description).toEqual("d1")
     expect(response.body.data.productCreate.type).toEqual(1)
@@ -70,13 +89,13 @@ describe('crate mutations', () => {
   })
 
   it('updates a product', async () => {
-    const response = await request(server)
+    const responseUpdate = await request(server)
       .post('/')
       .set('Authorization', `Bearer ${token}`)
       .send({
         query:
           `mutation {
-      productUpdate(id: ${productId}, name: "newt", slug: "snail", description: "dog", type: 2, gender: 1, image: "none")
+      productUpdate(id: ${productId}, name: "name2", slug: "snail", description: "dog", type: 2, gender: 1, image: "none")
       {id name}}`
       })
       .expect(200)
@@ -87,7 +106,7 @@ describe('crate mutations', () => {
       .send({query: `{productById(productId: ${productId}){name slug description type gender image}}`})
       .expect(200)
 
-    expect(responseProduct.body.data.productById.name).toEqual("newt")
+    expect(responseProduct.body.data.productById.name).toEqual("name2")
     expect(responseProduct.body.data.productById.slug).toEqual("snail")
     expect(responseProduct.body.data.productById.description).toEqual("dog")
     expect(responseProduct.body.data.productById.type).toEqual(2)
