@@ -25,15 +25,21 @@ export default [
     image: './hiphop-top-2.jpg'
   }, {
     style: 'posh',
-    image: './posh-shoes-1.jpg'
+    image: './posh-top-1.jpg'
   }, {
     style: 'posh',
-    image: './posh-shoes-2.jpg'
+    image: './posh-top-2.jpg'
+  }, {
+    style: 'sporty',
+    image: './sporty-top-fem.jpg'
+  }, {
+    style: 'sporty',
+    image: './sporty-top-mas.jpg'
   }, {
     style: 'vintage',
-    image: './vintage-gent-shoes-1.jpg'
+    image: './vintage-men-shirt-1.jpg'
   }, {
     style: 'vintage',
-    image: './vintage-lady-shoes-1.jpg'
+    image: './vintage-men-shirt-2.jpeg'
   }
 ]
