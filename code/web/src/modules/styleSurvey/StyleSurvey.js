@@ -56,11 +56,31 @@ class StyleSurvey extends PureComponent {
   render() {
     return (
       <form>
-        <SurveyChoices choices={accessories} handleChange={this.handleChange}/>
-        <SurveyChoices choices={bottoms} handleChange={this.handleChange}/>
-        <SurveyChoices choices={dresses} handleChange={this.handleChange}/>
-        <SurveyChoices choices={shoes} handleChange={this.handleChange}/>
-        <SurveyChoices choices={tops} handleChange={this.handleChange}/>
+        <SurveyChoices
+          category='accessories'
+          choices={accessories}
+          handleChange={this.handleChange}
+        />
+        <SurveyChoices
+          category='bottoms'
+          choices={bottoms}
+          handleChange={this.handleChange}
+        />
+        <SurveyChoices
+          category='dresses'
+          choices={dresses}
+          handleChange={this.handleChange}
+        />
+        <SurveyChoices
+          category='shoes'
+          choices={shoes}
+          handleChange={this.handleChange}
+        />
+        <SurveyChoices
+          category='tops'
+          choices={tops}
+          handleChange={this.handleChange}
+        />
       </form>
     )
   }

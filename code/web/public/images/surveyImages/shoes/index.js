@@ -13,7 +13,7 @@ export default [
     image: './country-shoes-2.jpg'
   }, {
     style: 'grungy',
-    image: './grungy-shoes-1.jpg'
+    image: './grungy-shoes-1.png'
   }, {
     style: 'grungy',
     image: './grungy-shoes-2.jpg'
@@ -22,7 +22,7 @@ export default [
     image: './hiphop-shoes-1.jpg'
   }, {
     style: 'hip-hop',
-    image: './hiphop-shoes-2.jpg'
+    image: './hip-hop-shoes-2.jpg'
   }, {
     style: 'posh',
     image: './posh-shoes-1.jpg'
