@@ -11,7 +11,8 @@ import { H1 } from '../../ui/typography'
 // import e from 'express'
 // import { connect } from 'react-redux'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter,  Redirect } from 'react-router-dom'
+import userRoutes from '../../setup/routes/user.js'
 
 import { postUserSurvey } from './api/actions.js'
 
@@ -116,11 +117,15 @@ class StyleSurvey extends PureComponent {
 
 // Component State
 function styleSurveyState(state) {
+  // copies state
   return {
     styleSurvey: state.styleSurvey
   }
 }
 
-// export default connect(styleSurveyReduxState, { /* someAction */ })(StyleSurvey)
-export default StyleSurvey
+export default connect(styleSurveyState, { postUserSurvey /* a function that takes in actions rather than state */ })(withRouter(StyleSurvey))/* connects actions and state */
+// export default StyleSurvey
+
+// when postUserSurvey is called
+// 
 
