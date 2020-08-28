@@ -2,7 +2,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import SurveyChoices from './surveyChoices'
-import accessories from '../../ui/surveyImages/accessories'
+import accessories from '../../../public/images/surveyImages/accessories/index'
+import bottoms from '../../../public/images/surveyImages/bottoms/index'
+import dresses from '../../../public/images/surveyImages/dresses/index'
+import shoes from '../../../public/images/surveyImages/shoes/index'
+import tops from '../../../public/images/surveyImages/tops/index'
 // import e from 'express'
 // import { connect } from 'react-redux'
 
@@ -10,6 +14,8 @@ import accessories from '../../ui/surveyImages/accessories'
 // import { someAction } from './api/actions'
 
 // Component
+// import { APP_URL } from '../../setup/config/env'
+
 class StyleSurvey extends PureComponent {
 
   constructor(props) {
@@ -28,10 +34,12 @@ class StyleSurvey extends PureComponent {
     // this.props.someAction()
   }
 
-  handleChange(event) {
-    // event.preventDefault()
-    //
-    this.setState({[event.target.name]: [...this.state[event.target.name], event.target.name]})
+  handleChange = (event) => {
+    console.log(event)
+    if(!event.target.isChecked) {
+      this.setState({[event.target.name]: [...this.state[event.target.name], event.target.value]})
+      event.target.isChecked
+    }
   }
 
   generateGarmentCheckboxes = (/*array of garments*/) => {
@@ -48,45 +56,11 @@ class StyleSurvey extends PureComponent {
   render() {
     return (
       <form>
-      <SurveyChoices choices={accessories}/>
-        <h1>Style Survey</h1>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Tops</h2>
-          {/* here is where the generateGarmentCheckboxes section will go */}
-          <input type='checkbox' name='tops'/>
-          <input type='checkbox' name='tops'/>
-          <input type='checkbox' name='tops'/>
-          <input type='checkbox' name='tops'/>
-        </section>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Bottoms</h2>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
-
-        </section>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Dresses</h2>
-          <input type='checkbox' name='dresses'/>
-          <input type='checkbox' name='dresses'/>
-          <input type='checkbox' name='dresses'/>
-          <input type='checkbox' name='dresses'/>
-        </section>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Shoes</h2>
-          <input type='checkbox' name='shoes'/>
-          <input type='checkbox' name='shoes'/>
-          <input type='checkbox' name='shoes'/>
-          <input type='checkbox' name='shoes'/>
-        </section>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Accessories</h2>
-          <input type='checkbox' name='accessories'/>
-          <input type='checkbox' name='accessories'/>
-          <input type='checkbox' name='accessories'/>
-          <input type='checkbox' name='accessories'/>
-        </section>
+        <SurveyChoices choices={accessories} handleChange={this.handleChange}/>
+        <SurveyChoices choices={bottoms} handleChange={this.handleChange}/>
+        <SurveyChoices choices={dresses} handleChange={this.handleChange}/>
+        <SurveyChoices choices={shoes} handleChange={this.handleChange}/>
+        <SurveyChoices choices={tops} handleChange={this.handleChange}/>
       </form>
     )
   }

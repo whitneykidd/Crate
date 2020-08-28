@@ -1,16 +1,38 @@
 import React from 'react'
+import { APP_URL } from '../../setup/config/env'
 
-const SurveyChoices = ({ choices }) => {
-  console.log(choices)
-  return choices.map( choice => {
+const SurveyChoices = ({ choices, handleChange }) => {
+  const choiceBoxes = choices.map( (choice, index) => {
     return (
-      <div>
-        <input type='checkbox' value={`${choice.style}`} style={{backgroundImage: `url(${choice.image})`}} />
-        <img src={`${choice.image}`} />
-        <h2>{`${choice.style}`}</h2>
-      </div>
+      <>
+        <input type='checkbox'
+          key={index}
+          value={`${choice.style}`}
+          name='accessories'
+          isChecked={false}
+          onChange={(event) => this.handleChange(event)}
+      />
+      <img style={{
+          height: '200px',
+          width: '150px',
+          display: 'inline'
+        }}
+        src={`${ APP_URL }/images/surveyImages/accessories${choice.image}`} />
+      </>
     )
   })
+
+  return (
+    <div
+      name="accessories"
+      style={{
+        display: 'flex',
+        flexFlow: 'row nowrap',
+        overflowX: 'scroll'
+      }}>
+      {choiceBoxes}
+    </div>
+)
 }
 
 export default SurveyChoices

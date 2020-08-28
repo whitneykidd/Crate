@@ -28,6 +28,7 @@
     "@storybook/react": "^5.3.18",
     "babel-loader": "8.1.0",
     "dotenv-webpack": "^1.7.0",
+    "file-loader": "^6.0.0",
     "nodemon": "2.0.3",
     "redux-devtools-extension": "^2.13.8",
     "webpack": "4.42.1",
