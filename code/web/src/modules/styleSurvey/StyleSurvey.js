@@ -10,9 +10,11 @@ import tops from '../../../public/images/surveyImages/tops/index'
 import { H1 } from '../../ui/typography'
 // import e from 'express'
 // import { connect } from 'react-redux'
+import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
 
-// App Imports
-// import { someAction } from './api/actions'
+import { postUserSurvey } from './api/actions.js'
+
 
 // Component
 // import { APP_URL } from '../../setup/config/env'
@@ -113,9 +115,11 @@ class StyleSurvey extends PureComponent {
 // }
 
 // Component State
-// function styleSurveyReduxState(state) {
-//   return state
-// }
+function styleSurveyState(state) {
+  return {
+    styleSurvey: state.styleSurvey
+  }
+}
 
 // export default connect(styleSurveyReduxState, { /* someAction */ })(StyleSurvey)
 export default StyleSurvey
