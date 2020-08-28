@@ -3,6 +3,7 @@ import express from 'express'
 import schema from '../../setup/schema'
 import graphqlHTTP from 'express-graphql'
 import models from '../../setup/models'
+import db from '../../setup/database'
 
 
 describe('product quereis', () => {
@@ -14,14 +15,15 @@ describe('product quereis', () => {
     server.use(
       '/',
       graphqlHTTP({
-        schema: schema, // import the schema
-        graphiql: true, // use the graphiql feature
+        schema: schema,
+        graphiql: true,
       })
     )
   })
 
   beforeEach( async () => {
     const product1 = {
+      id: 20,
       name: "name1",
       slug: "slug1",
       type: 1,
@@ -30,6 +32,7 @@ describe('product quereis', () => {
     }
 
     const product2 = {
+      id: 21,
       name: "name2",
       slug: "slug2",
       type: 2,
@@ -37,13 +40,11 @@ describe('product quereis', () => {
       description: "desc2"
     }
 
+    await models.Product.destroy({where: {} });
     await models.Product.create(product1)
     await models.Product.create(product2)
   })
 
-  afterEach( async () => {
-    await models.Product.destroy({ where: { name: ["name1", "name2"] } });
-  })
 
   afterAll(() => {
     db.close();
@@ -55,7 +56,7 @@ describe('product quereis', () => {
       .send({ query: `{products {id name slug type gender description }}`})
       .expect(200)
 
-    expect(responseAll.body.data.products.length >= 2).toBe(true)
+    expect(responseAll.body.data.products.length).toEqual(2)
 
     expect(responseAll.body.data.products[0].name).toEqual("name2")
     expect(responseAll.body.data.products[0].slug).toEqual("slug2")
