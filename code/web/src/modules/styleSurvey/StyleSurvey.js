@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter,  Redirect } from 'react-router-dom'
 import userRoutes from '../../setup/routes/user.js'
 import { messageShow, messageHide } from '../common/api/actions'
+import { create } from '../subscription/api/actions'
 
 import { postUserSurvey } from './api/actions.js'
 
@@ -43,10 +44,8 @@ class StyleSurvey extends PureComponent {
     const { category, value } = choice.dataset
     const selection = {
       value,
-      status,
       id: choice.id
     }
-    console.log(status)
     if (status) {
       this.setState({
         [category]: this.state[category].filter(previousChoice => previousChoice.id !== choice.id)
@@ -56,6 +55,10 @@ class StyleSurvey extends PureComponent {
         [category]: [...this.state[category], selection]
       })
     }
+  }
+
+  getPendingSubscription = () => {
+    return JSON.parse(localStorage.getItem('pendingSubscription'))
   }
 
   handleSubmission = (event) => {
@@ -71,6 +74,7 @@ class StyleSurvey extends PureComponent {
     }, [])
     const styleString = styleChoices.join(', ')
     const requestVariables = {id: this.props.user.details.id, style:styleString}
+    const crateId = this.getPendingSubscription()
     this.props.postUserSurvey(requestVariables)
       .then((response) => {
         console.log(response, 'in tehn')
@@ -78,10 +82,14 @@ class StyleSurvey extends PureComponent {
           this.props.messageShow(`Style updated to ${response.data.data.userUpdate.style}`)
         }
       })
+    this.props.create({ crateId })
+      .then(response => {
+        localStorage.clear()
+        this.props.history.push(userRoutes.subscriptions.path)
+      })
     window.setTimeout(() => {
       this.props.messageHide()
     }, 3500)
-    this.props.history.push(userRoutes.subscriptions.path)
   }
 
   render() {
@@ -135,9 +143,4 @@ function styleSurveyState(state) {
   }
 }
 
-export default connect(styleSurveyState, { postUserSurvey, messageHide, messageShow })(withRouter(StyleSurvey))/* connects actions and state */
-// export default StyleSurvey
-
-// when postUserSurvey is called
-// 
-
+export default connect(styleSurveyState, { postUserSurvey, messageHide, messageShow, create })(withRouter(StyleSurvey))/* connects actions and state */
