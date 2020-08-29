@@ -1,6 +1,13 @@
 // Imports
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import SurveyChoices from './surveyChoices'
+import accessories from '../../../public/images/surveyImages/accessories/index'
+import bottoms from '../../../public/images/surveyImages/bottoms/index'
+import dresses from '../../../public/images/surveyImages/dresses/index'
+import shoes from '../../../public/images/surveyImages/shoes/index'
+import tops from '../../../public/images/surveyImages/tops/index'
+import { H1 } from '../../ui/typography'
 // import e from 'express'
 // import { connect } from 'react-redux'
 
@@ -8,6 +15,8 @@ import PropTypes from 'prop-types'
 // import { someAction } from './api/actions'
 
 // Component
+// import { APP_URL } from '../../setup/config/env'
+
 class StyleSurvey extends PureComponent {
 
   constructor(props) {
@@ -26,65 +35,73 @@ class StyleSurvey extends PureComponent {
     // this.props.someAction()
   }
 
-  handleChange(event) {
-    // event.preventDefault()
-    // 
-    this.setState({[event.target.name]: [...this.state[event.target.name], event.target.name]})
+  handleChoice = (choice, status) => {
+    const { category, value } = choice.dataset
+    const selection = {
+      value,
+      status,
+      id: choice.id
+    }
+    console.log(status)
+    if (status) {
+      this.setState({
+        [category]: this.state[category].filter(previousChoice => previousChoice.id !== choice.id)
+      })
+    } else {
+      this.setState({
+        [category]: [...this.state[category], selection]
+      })
+    }
   }
 
-  generateGarmentCheckboxes = (/*array of garments*/) => {
-    // create a div or section to hold the garments in the section
-    // iterate over array of garments
-    // for each garment return a check box with a key or id, relative to its style
-    // will do one for each garment category
+  handleSubmission = (event) => {
+    event.preventDefault()
+    const categories = Object.keys(this.state)
+    const styleChoices = categories.reduce((choices, category) => {
+      this.state[category].map(choice => {
+        console.log(choice)
+        choices = [...choices, choice.value ]
+      })
+      this.setState({[category]: []})
+      return choices
+    }, [])
+    const styleString = styleChoices.join(', ')
+    console.log(styleString)
   }
-
-  
-
-
 
   render() {
     return (
-      <form>
-        <h1>Style Survey</h1>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Tops</h2>
-          {/* here is where the generateGarmentCheckboxes section will go */}
-          <input type='checkbox' name='tops'/>
-          <input type='checkbox' name='tops'/>
-          <input type='checkbox' name='tops'/>
-          <input type='checkbox' name='tops'/>
-        </section>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Bottoms</h2>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
-          <input type='checkbox' name='bottoms'/>
-       
-        </section>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Dresses</h2>
-          <input type='checkbox' name='dresses'/>
-          <input type='checkbox' name='dresses'/>
-          <input type='checkbox' name='dresses'/>
-          <input type='checkbox' name='dresses'/>
-        </section>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Shoes</h2>
-          <input type='checkbox' name='shoes'/>
-          <input type='checkbox' name='shoes'/>
-          <input type='checkbox' name='shoes'/>
-          <input type='checkbox' name='shoes'/>
-        </section>
-        <section onChange={event => this.handleChange(event)}>
-          <h2>Accessories</h2>
-          <input type='checkbox' name='accessories'/>
-          <input type='checkbox' name='accessories'/>
-          <input type='checkbox' name='accessories'/>
-          <input type='checkbox' name='accessories'/>
-        </section>
+      <section>
+        <H1 font='secondary'>Style Survey</H1>
+        <form onSubmit={() => this.handleSubmission(event)}>
+          <SurveyChoices
+            choices={accessories}
+            handleChoice={this.handleChoice}
+            choiceCategory='accessories'
+          />
+          <SurveyChoices
+            choices={bottoms}
+            handleChoice={this.handleChoice}
+            choiceCategory='bottoms'
+          />
+          <SurveyChoices
+            choices={dresses}
+            handleChoice={this.handleChoice}
+            choiceCategory='dresses'
+          />
+          <SurveyChoices
+            choices={shoes}
+            handleChoice={this.handleChoice}
+            choiceCategory='shoes'
+          />
+          <SurveyChoices
+            choices={tops}
+            handleChoice={this.handleChoice}
+            choiceCategory='tops'
+          />
+          <button>Submit</button>
       </form>
+      </section>
     )
   }
 }
