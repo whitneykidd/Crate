@@ -30,6 +30,7 @@ class Item extends PureComponent {
 
   onClickSubscribe = (crateId) => {
     if (!this.props.user.details.style) {
+      window.localStorage.setItem('pendingSubscription', JSON.stringify(crateId))
       return this.props.history.push(userRoutes.survey.path)
     }
     this.setState({
