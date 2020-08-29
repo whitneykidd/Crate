@@ -36,6 +36,7 @@ export function postUserSurvey(variables, isLoading = true) {
           type: SET_USER,
           user
         })
+        return response
       })
       .catch(error => {
         console.error(error)
