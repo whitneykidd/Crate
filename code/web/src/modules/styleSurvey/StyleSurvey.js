@@ -13,6 +13,7 @@ import { H1 } from '../../ui/typography'
 import { connect } from 'react-redux'
 import { Link, withRouter,  Redirect } from 'react-router-dom'
 import userRoutes from '../../setup/routes/user.js'
+import { messageShow, messageHide } from '../common/api/actions'
 
 import { postUserSurvey } from './api/actions.js'
 
@@ -71,6 +72,15 @@ class StyleSurvey extends PureComponent {
     const styleString = styleChoices.join(', ')
     const requestVariables = {id: this.props.user.details.id, style:styleString}
     this.props.postUserSurvey(requestVariables)
+      .then((response) => {
+        console.log(response, 'in tehn')
+        if(response.status === 200) {
+          this.props.messageShow(`Style updated to ${response.data.data.userUpdate.style}`)
+        }
+      })
+    window.setTimeout(() => {
+      this.props.messageHide()
+    }, 3500)
     this.props.history.push(userRoutes.subscriptions.path)
   }
 
@@ -125,7 +135,7 @@ function styleSurveyState(state) {
   }
 }
 
-export default connect(styleSurveyState, { postUserSurvey })(withRouter(StyleSurvey))/* connects actions and state */
+export default connect(styleSurveyState, { postUserSurvey, messageHide, messageShow })(withRouter(StyleSurvey))/* connects actions and state */
 // export default StyleSurvey
 
 // when postUserSurvey is called

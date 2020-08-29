@@ -63,7 +63,7 @@ class Item extends PureComponent {
   }
 
   render() {
-    const { id, crate, createdAt } = this.props.subscription
+    const { id, crate, user:{style} , createdAt } = this.props.subscription
     const { isLoading } = this.state
 
     return (
@@ -75,7 +75,7 @@ class Item extends PureComponent {
         <div style={{ padding: '1em 1.2em' }}>
           <H4 font="secondary" style={{ color: black }}>{ crate.name }</H4>
 
-          <p style={{ color: grey2, marginTop: '1em' }}>{ crate.description }</p>
+          <p style={{ color: grey2, marginTop: '1em' }}>{`${crate.description} It will be ${style}.`}</p>
 
           <p style={{ textAlign: 'center', marginTop: '1.5em', marginBottom: '1em' }}>
             <Button

@@ -118,12 +118,3 @@ export function getGenders() {
   }
 }
 
-export function updateUserDetails(id) {
-  return dispatch => {
-    return axios.post(routeApi, query({
-      operation: 'user',
-      variables: id,
-      fields: ['user {id, name, email, role, style}']
-    })).then(response => console.log(response, 'user updates'))
-  }
-}
