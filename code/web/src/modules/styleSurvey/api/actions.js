@@ -1,7 +1,6 @@
 // Imports
 import axios from 'axios'
 import { query, mutation } from 'gql-query-builder'
-import {updateUserDetails} from '../../user/api/actions'
 import { SET_USER } from '../../user/api/actions'
 // App Imports
 import { routeApi } from '../../../setup/routes'

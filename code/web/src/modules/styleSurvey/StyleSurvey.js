@@ -2,25 +2,23 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import SurveyChoices from './surveyChoices'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import userRoutes from '../../setup/routes/user.js'
+
+// Survey Data
 import accessories from '../../../public/images/surveyImages/accessories/index'
 import bottoms from '../../../public/images/surveyImages/bottoms/index'
 import dresses from '../../../public/images/surveyImages/dresses/index'
 import shoes from '../../../public/images/surveyImages/shoes/index'
 import tops from '../../../public/images/surveyImages/tops/index'
+// UI imports
 import { H1 } from '../../ui/typography'
-// import e from 'express'
-// import { connect } from 'react-redux'
-import { connect } from 'react-redux'
-import { Link, withRouter,  Redirect } from 'react-router-dom'
-import userRoutes from '../../setup/routes/user.js'
+
+// Actions
 import { messageShow, messageHide } from '../common/api/actions'
 import { create } from '../subscription/api/actions'
-
 import { postUserSurvey } from './api/actions.js'
-
-
-// Component
-// import { APP_URL } from '../../setup/config/env'
 
 class StyleSurvey extends PureComponent {
 
@@ -34,10 +32,6 @@ class StyleSurvey extends PureComponent {
       shoes: [],
       accessories: []
     }
-  }
-
-  componentDidMount() {
-    // this.props.someAction()
   }
 
   handleChoice = (choice, status) => {
@@ -130,14 +124,16 @@ class StyleSurvey extends PureComponent {
 }
 
 // Component Properties
-// StyleSurvey.propTypes = {
-  // dummyId: PropTypes.number.isRequired,
-  // someAction: PropTypes.func.isRequired,
-// }
+StyleSurvey.propTypes = {
+  user: PropTypes.object.isRequired,
+  create: PropTypes.func.isRequired,
+  postUserSurvey: PropTypes.func.isRequired,
+  messageShow: PropTypes.func.isRequired,
+  messageHide: PropTypes.func.isRequired
+}
 
 // Component State
 function styleSurveyState(state) {
-  // copies state
   return {
     user: state.user
   }
