@@ -1,35 +1,47 @@
 import React from 'react'
 import { APP_URL } from '../../setup/config/env'
+import { H1, H3 } from '../../ui/typography'
 
-const SurveyChoices = ({ choices, handleChange, category }) => {
-  const choiceBoxes = choices.map( (choice, index) => {
-    return (
-      <div key={index}>
-        <input type='checkbox'
-          value={`${choice.style}`}
+const SurveyChoices = ({ choices, handleChange, choiceCategory }) => {
+  const choiceBoxes = category => {
+    return choices.map( (choice, index) => {
+      return (
+        <span
+          key={index}
           name={category}
-          isChecked={false}
-          onChange={(event) => handleChange(event)}
-      />
-      <img style={{
-          height: '200px',
-          width: '150px',
-          display: 'inline'
-        }}
-        src={`${ APP_URL }/images/surveyImages/${category}/${choice.image}`} />
-      </div>
+          data-category={category}
+          data-value={choice.style}
+          onClick={event => handleChange(event)}
+          role='checkbox'
+          aria-checked={false}
+        >
+          {/* <input type='checkbox' */}
+          {/*   value={`${choice.style}`} */}
+          {/*   style={{ */}
+          {/*     display: 'none' */}
+          {/*   }} */}
+          {/*   selected={false} */}
+          {/* /> */}
+          <img style={{
+            height: '200px',
+            width: '150px',
+            display: 'inline'
+          }}
+            src={`${ APP_URL }/images/surveyImages/${category}/${choice.image}`}
+          />
+        </span>
     )
-  })
+    })
+  }
 
   return (
     <div
-      name={category}
       style={{
         display: 'flex',
         flexFlow: 'row nowrap',
         overflowX: 'scroll'
       }}>
-      {choiceBoxes}
+      {choiceBoxes(choiceCategory)}
     </div>
 )
 }

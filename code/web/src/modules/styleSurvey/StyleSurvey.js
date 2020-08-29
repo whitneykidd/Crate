@@ -35,18 +35,19 @@ class StyleSurvey extends PureComponent {
   }
 
   handleChange = (event) => {
-    console.log(event)
-    if(!event.target.isChecked) {
-      this.setState({[event.target.name]: [...this.state[event.target.name], event.target.value]})
-      event.target.isChecked
-    }
+    const choice = event.target.closest('span')
+    const status = choice.getAttribute('aria-checked')
+    console.log(status)
+    // const selection = choice.children[0]
+    // console.log(selection.selected, 'hello')
+    // this.setState({[choice.dataset.category]: [...this.state[choice.dataset.category], selection.value]})
   }
 
   generateGarmentCheckboxes = (/*array of garments*/) => {
     // create a div or section to hold the garments in the section
     // iterate over array of garments
     // for each garment return a check box with a key or id, relative to its style
-    // will do one for each garment category
+    // will do one for each garment choiceCategory
   }
 
 
@@ -57,29 +58,29 @@ class StyleSurvey extends PureComponent {
     return (
       <form>
         <SurveyChoices
-          category='accessories'
           choices={accessories}
           handleChange={this.handleChange}
+          choiceCategory='accessories'
         />
         <SurveyChoices
-          category='bottoms'
           choices={bottoms}
           handleChange={this.handleChange}
+          choiceCategory='bottoms'
         />
         <SurveyChoices
-          category='dresses'
           choices={dresses}
           handleChange={this.handleChange}
+          choiceCategory='dresses'
         />
         <SurveyChoices
-          category='shoes'
           choices={shoes}
           handleChange={this.handleChange}
+          choiceCategory='shoes'
         />
         <SurveyChoices
-          category='tops'
           choices={tops}
           handleChange={this.handleChange}
+          choiceCategory='tops'
         />
       </form>
     )
