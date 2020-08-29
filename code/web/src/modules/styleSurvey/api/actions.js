@@ -17,21 +17,21 @@ export const SURVEY_USER_REQUEST_FAILURE = 'SURVEY/USER_REQUEST_FAILURE'
 
 // // Get list of products
 
-export function postUserSurvey(styleString, isLoading = true, /*forceRefresh = false*/) {
+export function postUserSurvey(styleString, isLoading = true) {
   return dispatch => {
     dispatch({
       type: SURVEY_USER_POST_REQUEST,
       error: null,
       isLoading
     })
-
+    console.log("inside actions", styleString)
     return axios.post(routeApi, mutation({
       operation: 'userUpdate',
       variables: styleString,
       fields: ['user {style}']
     }))
       .then(response => {
-        console.log(response)
+        console.log("inside dispatch in post", response)
       })
       .catch(error => {
         dispatch({
