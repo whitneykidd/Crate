@@ -69,7 +69,8 @@ class StyleSurvey extends PureComponent {
       return choices
     }, [])
     const styleString = styleChoices.join(', ')
-    console.log(styleString)
+    console.log(this.props.postUserSurvey(styleString))
+    this.props.postUserSurvey(styleString)
   }
 
   render() {
@@ -123,7 +124,7 @@ function styleSurveyState(state) {
   }
 }
 
-export default connect(styleSurveyState, { postUserSurvey /* a function that takes in actions rather than state */ })(withRouter(StyleSurvey))/* connects actions and state */
+export default connect(styleSurveyState, { postUserSurvey })(withRouter(StyleSurvey))/* connects actions and state */
 // export default StyleSurvey
 
 // when postUserSurvey is called
