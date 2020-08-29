@@ -3,42 +3,44 @@ import { APP_URL } from '../../setup/config/env'
 import { H3 } from '../../ui/typography'
 
 const SurveyChoices = ({ choices, handleChoice, choiceCategory }) => {
-  const destringifyBoolean = (booleanString) => {
-    return booleanString === 'true'
-  }
-
   const handleChange = (event) => {
     const choice = event.target.closest('span')
     const selected = choice.getAttribute('aria-checked') === 'true'
     handleChoice(choice, selected)
-    (selected) ?  choice.setAttribute('aria-checked', 'false')
-      : choice.setAttribute('aria-checked', 'true')
+    if (selected) {
+      choice.setAttribute('aria-checked', 'false')
+    } else {
+      choice.setAttribute('aria-checked', 'true')
     }
-    // if (selected) {
-    //   return {
-    //     border: '0px'
-    //   }
-    // } else {
-    //   return {
-    //     border: '3px solid'
-    //   }
-    // }
+  }
+
+  const createStyles = (choiceId) => {
+    // const choice = document.getElementById(`${choiceId}`)
+    // const selectionStatus = choice.getAttribute('aria-checked') === 'true'
+    const selectedStyle = {
+      margin: '5px',
+      padding: '3px',
+      border: '3px double #333'
+    }
+    const unselectedStyle = {
+      margin: '5px',
+      padding: '3px'
+    }
+    return selectionStatus ? selectedStyle : unselectedStyle
   }
 
   const choiceBoxes = category => {
     return choices.map((choice, index) => {
+      const choiceId = `${category}${index}`
       return (
         <span
           key={index}
-          id={`${category}${index}`}
+          id={choiceId}
           data-category={category}
           data-value={choice.style}
           aria-checked={false}
-          onClick={event => {
-            handleChange(event)
-            handleStyleChange(event)
-          }
-          }
+          // style={createStyles(choiceId)}
+          onClick={event => handleChange(event)}
           role='checkbox'
         >
           <img style={{

@@ -42,29 +42,38 @@ class StyleSurvey extends PureComponent {
       status,
       id: choice.id
     }
+    console.log(status)
     if (status) {
-      this.setState({[category]: this.state[category].filter(previousChoice => previousChoice.id !== choice.id)})
+      this.setState({
+        [category]: this.state[category].filter(previousChoice => previousChoice.id !== choice.id)
+      })
     } else {
-      this.setState({[category]: [...this.state[category], selection]})
+      this.setState({
+        [category]: [...this.state[category], selection]
+      })
     }
   }
 
-  generateGarmentCheckboxes = (/*array of garments*/) => {
-    // create a div or section to hold the garments in the section
-    // iterate over array of garments
-    // for each garment return a check box with a key or id, relative to its style
-    // will do one for each garment choiceCategory
+  handleSubmission = (event) => {
+    event.preventDefault()
+    const categories = Object.keys(this.state)
+    const styleChoices = categories.reduce((choices, category) => {
+      this.state[category].map(choice => {
+        console.log(choice)
+        choices = [...choices, choice.value ]
+      })
+      this.setState({[category]: []})
+      return choices
+    }, [])
+    const styleString = styleChoices.join(', ')
+    console.log(styleString)
   }
-
-
-
-
 
   render() {
     return (
       <section>
         <H1 font='secondary'>Style Survey</H1>
-          <form>
+        <form onSubmit={() => this.handleSubmission(event)}>
           <SurveyChoices
             choices={accessories}
             handleChoice={this.handleChoice}
@@ -90,6 +99,7 @@ class StyleSurvey extends PureComponent {
             handleChoice={this.handleChoice}
             choiceCategory='tops'
           />
+          <button>Submit</button>
       </form>
       </section>
     )
