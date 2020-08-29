@@ -7,6 +7,7 @@ import bottoms from '../../../public/images/surveyImages/bottoms/index'
 import dresses from '../../../public/images/surveyImages/dresses/index'
 import shoes from '../../../public/images/surveyImages/shoes/index'
 import tops from '../../../public/images/surveyImages/tops/index'
+import { H1 } from '../../ui/typography'
 // import e from 'express'
 // import { connect } from 'react-redux'
 
@@ -34,13 +35,18 @@ class StyleSurvey extends PureComponent {
     // this.props.someAction()
   }
 
-  handleChange = (event) => {
-    const choice = event.target.closest('span')
-    const status = choice.getAttribute('aria-checked')
-    console.log(status)
-    // const selection = choice.children[0]
-    // console.log(selection.selected, 'hello')
-    // this.setState({[choice.dataset.category]: [...this.state[choice.dataset.category], selection.value]})
+  handleChoice = (choice, status) => {
+    const { category, value } = choice.dataset
+    const selection = {
+      value,
+      status,
+      id: choice.id
+    }
+    if (status) {
+      this.setState({[category]: this.state[category].filter(previousChoice => previousChoice.id !== choice.id)})
+    } else {
+      this.setState({[category]: [...this.state[category], selection]})
+    }
   }
 
   generateGarmentCheckboxes = (/*array of garments*/) => {
@@ -56,33 +62,36 @@ class StyleSurvey extends PureComponent {
 
   render() {
     return (
-      <form>
-        <SurveyChoices
-          choices={accessories}
-          handleChange={this.handleChange}
-          choiceCategory='accessories'
-        />
-        <SurveyChoices
-          choices={bottoms}
-          handleChange={this.handleChange}
-          choiceCategory='bottoms'
-        />
-        <SurveyChoices
-          choices={dresses}
-          handleChange={this.handleChange}
-          choiceCategory='dresses'
-        />
-        <SurveyChoices
-          choices={shoes}
-          handleChange={this.handleChange}
-          choiceCategory='shoes'
-        />
-        <SurveyChoices
-          choices={tops}
-          handleChange={this.handleChange}
-          choiceCategory='tops'
-        />
+      <section>
+        <H1 font='secondary'>Style Survey</H1>
+          <form>
+          <SurveyChoices
+            choices={accessories}
+            handleChoice={this.handleChoice}
+            choiceCategory='accessories'
+          />
+          <SurveyChoices
+            choices={bottoms}
+            handleChoice={this.handleChoice}
+            choiceCategory='bottoms'
+          />
+          <SurveyChoices
+            choices={dresses}
+            handleChoice={this.handleChoice}
+            choiceCategory='dresses'
+          />
+          <SurveyChoices
+            choices={shoes}
+            handleChoice={this.handleChoice}
+            choiceCategory='shoes'
+          />
+          <SurveyChoices
+            choices={tops}
+            handleChoice={this.handleChoice}
+            choiceCategory='tops'
+          />
       </form>
+      </section>
     )
   }
 }

@@ -1,27 +1,46 @@
 import React from 'react'
 import { APP_URL } from '../../setup/config/env'
-import { H1, H3 } from '../../ui/typography'
+import { H3 } from '../../ui/typography'
 
-const SurveyChoices = ({ choices, handleChange, choiceCategory }) => {
+const SurveyChoices = ({ choices, handleChoice, choiceCategory }) => {
+  const destringifyBoolean = (booleanString) => {
+    return booleanString === 'true'
+  }
+
+  const handleChange = (event) => {
+    const choice = event.target.closest('span')
+    const selected = choice.getAttribute('aria-checked') === 'true'
+    handleChoice(choice, selected)
+    (selected) ?  choice.setAttribute('aria-checked', 'false')
+      : choice.setAttribute('aria-checked', 'true')
+    }
+    // if (selected) {
+    //   return {
+    //     border: '0px'
+    //   }
+    // } else {
+    //   return {
+    //     border: '3px solid'
+    //   }
+    // }
+  }
+
   const choiceBoxes = category => {
-    return choices.map( (choice, index) => {
+    return choices.map((choice, index) => {
       return (
         <span
           key={index}
-          name={category}
+          id={`${category}${index}`}
           data-category={category}
           data-value={choice.style}
-          onClick={event => handleChange(event)}
-          role='checkbox'
           aria-checked={false}
+          onClick={event => {
+            handleChange(event)
+            handleStyleChange(event)
+          }
+          }
+          role='checkbox'
         >
-          {/* <input type='checkbox' */}
-          {/*   value={`${choice.style}`} */}
-          {/*   style={{ */}
-          {/*     display: 'none' */}
-          {/*   }} */}
-          {/*   selected={false} */}
-          {/* /> */}
           <img style={{
             height: '200px',
             width: '150px',
@@ -35,14 +54,18 @@ const SurveyChoices = ({ choices, handleChange, choiceCategory }) => {
   }
 
   return (
-    <div
-      style={{
+    <article>
+      <H3 font="primary">{choiceCategory}</H3>
+      <div
+        style={{
         display: 'flex',
         flexFlow: 'row nowrap',
         overflowX: 'scroll'
-      }}>
-      {choiceBoxes(choiceCategory)}
+        }}
+      >
+        {choiceBoxes(choiceCategory)}
     </div>
+    </article>
 )
 }
 
