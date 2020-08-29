@@ -3,3 +3,4 @@ build/
 public/js/bundles/
 public/index.html
 .DS_Store
+../api/src/config/database.json
