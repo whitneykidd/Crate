@@ -69,8 +69,9 @@ class StyleSurvey extends PureComponent {
       return choices
     }, [])
     const styleString = styleChoices.join(', ')
-    console.log(this.props.postUserSurvey(styleString))
-    this.props.postUserSurvey(styleString)
+    const requestVariables = {id: this.props.user.details.id, style:styleString}
+    this.props.postUserSurvey(requestVariables)
+    this.props.history.push(userRoutes.subscriptions.path)
   }
 
   render() {
@@ -120,7 +121,7 @@ class StyleSurvey extends PureComponent {
 function styleSurveyState(state) {
   // copies state
   return {
-    styleSurvey: state.styleSurvey
+    user: state.user
   }
 }
 

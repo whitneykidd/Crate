@@ -80,6 +80,8 @@ export async function getGenders() {
 
 // Update user
 export async function update(parentValue, { id, style }) {
+  console.log('BE log', style)
+  console.log(id)
   let styleArray = style.split(', ')
   let styleCount = {}
 
