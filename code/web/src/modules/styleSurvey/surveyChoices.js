@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import { APP_URL } from '../../setup/config/env'
 import { H3 } from '../../ui/typography'
 
@@ -15,8 +15,6 @@ const SurveyChoices = ({ choices, handleChoice, choiceCategory }) => {
   }
 
   const createStyles = (choiceId) => {
-    // const choice = document.getElementById(`${choiceId}`)
-    // const selectionStatus = choice.getAttribute('aria-checked') === 'true'
     const selectedStyle = {
       margin: '5px',
       padding: '3px',
@@ -26,7 +24,10 @@ const SurveyChoices = ({ choices, handleChoice, choiceCategory }) => {
       margin: '5px',
       padding: '3px'
     }
-    return selectionStatus ? selectedStyle : unselectedStyle
+
+    // const choice = document.getElementById(`${choiceId}`)
+
+    return false ? selectedStyle : unselectedStyle
   }
 
   const choiceBoxes = category => {
@@ -39,7 +40,7 @@ const SurveyChoices = ({ choices, handleChoice, choiceCategory }) => {
           data-category={category}
           data-value={choice.style}
           aria-checked={false}
-          // style={createStyles(choiceId)}
+          style={createStyles(choiceId)}
           onClick={event => handleChange(event)}
           role='checkbox'
         >
@@ -66,9 +67,9 @@ const SurveyChoices = ({ choices, handleChoice, choiceCategory }) => {
         }}
       >
         {choiceBoxes(choiceCategory)}
-    </div>
+      </div>
     </article>
-)
+  )
 }
 
 export default SurveyChoices
