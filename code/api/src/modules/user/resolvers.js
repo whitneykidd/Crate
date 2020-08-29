@@ -80,8 +80,6 @@ export async function getGenders() {
 
 // Update user
 export async function update(parentValue, { id, style }) {
-  console.log('BE log', style)
-  console.log(id)
   let styleArray = style.split(', ')
   let styleCount = {}
 
@@ -116,10 +114,11 @@ export async function update(parentValue, { id, style }) {
 
   let userStyle = `${firstStyle}${secondStyle}${thirdStyle}`
 
-    return await models.User.update(
+   await models.User.update(
       {
         style: userStyle
       },
       { where: { id } }
     )
+  return models.User.findOne({where: {id}})
 }
