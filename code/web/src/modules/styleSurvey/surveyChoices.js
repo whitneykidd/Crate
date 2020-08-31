@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useCallback} from 'react'
 import { APP_URL } from '../../setup/config/env'
 import { H3 } from '../../ui/typography'
 
@@ -14,21 +14,23 @@ const SurveyChoices = ({ choices, handleChoice, choiceCategory }) => {
     }
   }
 
-  const createStyles = (choiceId) => {
-    const selectedStyle = {
-      margin: '5px',
-      padding: '3px',
-      border: '3px double #333'
-    }
-    const unselectedStyle = {
-      margin: '5px',
-      padding: '3px'
-    }
+  const createStyles = useCallback(node => {
+    const selectedStyle =`
+      margin: 5px;
+      padding: 3px;
+      border: 3px double #333;
+    `
+    const unselectedStyle = `
+      margin: 5px;
+      padding: 3px;
+    `
 
-    // const choice = document.getElementById(`${choiceId}`)
-
-    return false ? selectedStyle : unselectedStyle
-  }
+    if (node !== null) {
+      const status = node.getAttribute('aria-checked') === 'true'
+      return status ? node.setAttribute('style', selectedStyle)
+        : node.setAttribute('style', unselectedStyle)
+    }
+  })
 
   const choiceBoxes = category => {
     return choices.map((choice, index) => {
@@ -40,7 +42,7 @@ const SurveyChoices = ({ choices, handleChoice, choiceCategory }) => {
           data-category={category}
           data-value={choice.style}
           aria-checked={false}
-          style={createStyles(choiceId)}
+          ref={createStyles}
           onClick={event => handleChange(event)}
           role='checkbox'
         >
