@@ -60,7 +60,6 @@ class StyleSurvey extends PureComponent {
     const categories = Object.keys(this.state)
     const styleChoices = categories.reduce((choices, category) => {
       this.state[category].map(choice => {
-        console.log(choice)
         choices = [...choices, choice.value ]
       })
       this.setState({[category]: []})
@@ -71,7 +70,6 @@ class StyleSurvey extends PureComponent {
     const crateId = this.getPendingSubscription()
     this.props.postUserSurvey(requestVariables)
       .then((response) => {
-        console.log(response, 'in tehn')
         if(response.status === 200) {
           this.props.messageShow(`Style updated to ${response.data.data.userUpdate.style}`)
         }
